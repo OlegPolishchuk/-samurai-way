@@ -8,4 +8,29 @@
 
 .aside {
     flex-basis: 20%;
+    display: flex;
+    flex-direction: column;
+}
+
+.avatar_wrapper {
+    margin: 0 0 20px 0;
+    padding: 0;
+    width: 100%;
+    min-height: 200px;
+
+    border-radius: 3px;
+    background: #D7DFE6;
+}
+
+.set_avatar_btn {
+    padding: 5px;
+    background: #D7DFE6;
+    border-radius: 3px;
+    border: none;
+    color: #677894;
+    cursor: pointer;
+}
+
+.set_avatar_btn:hover {
+    background: #E1E9F0;
 }

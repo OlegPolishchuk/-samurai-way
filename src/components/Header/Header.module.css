@@ -3,3 +3,8 @@
     background: #fff;
     margin-bottom: 20px;
 }
+
+.wrapper {
+    width: 1200px;
+    margin: 0 auto;
+}

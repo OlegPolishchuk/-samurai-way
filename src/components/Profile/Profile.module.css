@@ -1,0 +1,43 @@
+.main_style {
+    padding: 15px;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 1px 1px 1px rgba(0,0,0,.2);
+}
+
+.Profile_name h2 {
+    font-size: 24px;
+    font-weight: normal;
+    margin: 0;
+}
+
+.Profile_name p {
+    margin: 8px 0;
+    color: #9998A2;
+}
+
+.Profile_name p:hover {
+    cursor: pointer;
+    color: #4B5E94;
+    text-decoration: underline;
+}
+
+.main {
+    flex-basis: 50%;
+}
+
+.profile_data {
+    border-top: 1px solid #D7DFE6;
+}
+
+.profile_data p {
+    display: flex;
+    justify-content: space-between;
+    flex-basis: 40%;
+    color: #677894;
+}
+
+.profile_data span {
+    color: #4B5E94;
+    flex-basis: 60%;
+}

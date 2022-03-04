@@ -5,14 +5,11 @@ const Aside = () => {
     return (
         <aside className={style.main_style +' '+ style.aside}>
             {/*block with photo and description*/}
-            <figure>
+            <figure className={style.avatar_wrapper}>
 
                 <img alt={'avatar'} className={style.avatar}/>
-                <figcaption className={style.set_avatar}>
-                    Set photo
-                </figcaption>
-                <figcaption>Edit photo</figcaption>
             </figure>
+            <button className={style.set_avatar_btn}>Set photo</button>
         </aside>
     );
 };
