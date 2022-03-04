@@ -1,0 +1,10 @@
+.main_style {
+    padding: 15px;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 1px 1px 1px rgba(0,0,0,.2);
+}
+
+.main {
+    flex-basis: 50%;
+}
