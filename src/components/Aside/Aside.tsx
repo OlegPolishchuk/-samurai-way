@@ -9,7 +9,7 @@ const Aside = () => {
 
                 <img alt={'avatar'} className={style.avatar}/>
             </figure>
-            <button className={style.set_avatar_btn}>Set photo</button>
+            <button className={style.set_avatar_btn + ' common_btn'}>Set photo</button>
         </aside>
     );
 };

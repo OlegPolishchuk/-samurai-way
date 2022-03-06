@@ -10,7 +10,7 @@ const Profile = () => {
                 <Aside/>
                 <section className={style.profile}>
                     {/*Profile description*/}
-                    <div className={style.Profile_name}>
+                    <div className={style.profile_name}>
                         <h2>Profile Name</h2>
                         <p className={style.profile_status}>set status</p>
                     </div>
@@ -19,7 +19,7 @@ const Profile = () => {
                         <p>Age <span>30</span></p>
                         <p>Marital status <span>single</span></p>
                     </div>
-                    <button className={style.edit_btn}>Edit profile</button>
+                    <button className={style.edit_btn + ' common_btn'}>Edit profile</button>
                 </section>
             </div>
             <Posts/>

@@ -22,16 +22,3 @@
     border-radius: 3px;
     background: #D7DFE6;
 }
-
-.set_avatar_btn {
-    padding: 5px;
-    background: #D7DFE6;
-    border-radius: 3px;
-    border: none;
-    color: #677894;
-    cursor: pointer;
-}
-
-.set_avatar_btn:hover {
-    background: #E1E9F0;
-}

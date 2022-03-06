@@ -16,6 +16,10 @@
     margin: 0;
 }
 
+.profile_status {
+    color : #9998A2;
+}
+
 .profile_name p {
     margin: 8px 0;
     color: #9998A2;
@@ -43,17 +47,7 @@
     flex-basis: 60%;
 }
 
+
 .edit_btn {
-    padding: 5px;
     margin-top: 30px;
-
-    background: #D7DFE6;
-    border-radius: 3px;
-    border: none;
-    color: #677894;
-    cursor: pointer;
-}
-
-.edit_btn:hover {
-    background: #E1E9F0;
 }
