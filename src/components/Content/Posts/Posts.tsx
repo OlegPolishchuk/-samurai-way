@@ -28,7 +28,7 @@ const Posts = () => {
     }
 
     return (
-        <section>
+        <section className={style.post_wrapper}>
             <Post post={post}/>
             <Post post={post2}/>
             <NewPost/>

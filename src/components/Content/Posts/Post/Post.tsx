@@ -24,7 +24,7 @@ const Post = (props: PostPropsType) => {
     return (
         <section className={style.post}>
             <div className={style.writer}>
-                <img alt={'photo'} className={style.photo} src={props.post.photo}/>
+                <img alt={'userPhoto'} className={style.photo} src={props.post.photo}/>
                 <div>
                     <h3 className={style.name}>{props.post.userName}</h3>
                     <p className={style.date}>{props.post.post.date}</p>

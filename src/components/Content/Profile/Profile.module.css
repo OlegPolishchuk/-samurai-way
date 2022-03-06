@@ -1,5 +1,13 @@
+.profile_wrapper {
+    display: flex;
+    justify-content: space-between;
+
+    border-bottom: 1px solid #D7DFE6;
+}
+
 .profile {
     padding-bottom: 20px;
+    flex-basis: 70%;
 }
 
 .profile_name h2 {
