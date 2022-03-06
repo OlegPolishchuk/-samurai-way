@@ -1,0 +1,13 @@
+.likes {
+    text-align: right;
+    color: #4B5E94;
+    cursor: pointer;
+}
+
+.like_btn {
+    margin-right: 15px;
+}
+
+.like_btn:hover {
+    text-decoration: underline;
+}

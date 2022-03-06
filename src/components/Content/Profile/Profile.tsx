@@ -3,9 +3,9 @@ import style from './Profile.module.css';
 
 const Profile = () => {
     return (
-        <main className={style.main_style +' '+ style.main}>
+        <section className={style.profile}>
             {/*Profile description*/}
-            <div className={style.Profile_name}>
+            <div className={style.profile_name}>
                 <h2>Profile Name</h2>
                 <p className={style.profile_status}>set status</p>
             </div>
@@ -14,7 +14,8 @@ const Profile = () => {
                 <p>Age <span>30</span></p>
                 <p>Marital status <span>single</span></p>
             </div>
-        </main>
+            <button className={style.edit_btn}>Edit profile</button>
+        </section>
     );
 };
 

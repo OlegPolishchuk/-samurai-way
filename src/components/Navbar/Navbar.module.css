@@ -1,6 +1,7 @@
 .main_nav {
     padding: 15px 10px;
     flex-basis: 20%;
+    align-self: start;
 }
 
 .main_nav_inner {

@@ -1,29 +1,22 @@
-.main_style {
-    padding: 15px;
-    background: #fff;
-    border-radius: 4px;
-    box-shadow: 1px 1px 1px rgba(0,0,0,.2);
+.profile {
+    padding-bottom: 20px;
 }
 
-.Profile_name h2 {
+.profile_name h2 {
     font-size: 24px;
     font-weight: normal;
     margin: 0;
 }
 
-.Profile_name p {
+.profile_name p {
     margin: 8px 0;
     color: #9998A2;
 }
 
-.Profile_name p:hover {
+.profile_name p:hover {
     cursor: pointer;
     color: #4B5E94;
     text-decoration: underline;
-}
-
-.main {
-    flex-basis: 50%;
 }
 
 .profile_data {
@@ -40,4 +33,19 @@
 .profile_data span {
     color: #4B5E94;
     flex-basis: 60%;
+}
+
+.edit_btn {
+    padding: 5px;
+    margin-top: 30px;
+
+    background: #D7DFE6;
+    border-radius: 3px;
+    border: none;
+    color: #677894;
+    cursor: pointer;
+}
+
+.edit_btn:hover {
+    background: #E1E9F0;
 }
