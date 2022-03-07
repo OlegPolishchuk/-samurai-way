@@ -6,7 +6,6 @@ import Dialogs from "../Dialogs/Dialogs";
 const Main = () => {
     return (
         <main className={style.main_wrapper +' main_style'}>
-            {/*<Content/>*/}
             <Profile/>
             {/*<Dialogs/>*/}
         </main>
