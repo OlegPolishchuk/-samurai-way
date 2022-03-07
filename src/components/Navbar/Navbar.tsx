@@ -7,8 +7,8 @@ const Navbar = () => {
         <nav className={style.main_nav}>
             {/* navigation (left sidebar)*/}
             <ul className={style.main_nav_inner}>
-                <li><NavLink to={'/profile'}>Profile</NavLink></li>
-                <li><NavLink to={'/dialogs'}>Dialogs</NavLink></li>
+                <li><NavLink to={'/profile'} activeClassName={style.active}>Profile</NavLink></li>
+                <li><NavLink to={'/dialogs'} activeClassName={style.active}>Dialogs</NavLink></li>
                 <li><a href={'#'}>Messages</a></li>
                 <li><a href={'#'}>Settings</a></li>
             </ul>
