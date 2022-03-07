@@ -1,0 +1,131 @@
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.dialogs_list {
+    flex-basis: 30%;
+
+    padding: 15px;
+    border-right: 1px solid #4B5E94;
+}
+
+/* dialog item */
+
+.dialog_item {
+    display: flex;
+    justify-content: start;
+
+    margin: 0 0 15px 0;
+    padding: 10px;
+    border-radius: 3px;
+    border: 1px solid #D7DFE6;
+
+    cursor: pointer;
+    transition: all .1s ease;
+}
+
+.dialog_item:hover {
+    border: 1px solid #4B5E94;
+}
+
+.dialog_item:active {
+
+}
+
+
+.item_photo {
+    width: 60px;
+    height: 60px;
+
+    border-radius: 50%;
+}
+
+.item_name {
+    margin-left: 20px;
+    align-self: center;
+}
+
+.item_name a {
+    color: #4B5E94;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+
+/* messages block */
+
+.messages {
+    flex-basis: 60%;
+
+    padding: 15px;
+}
+
+figure {
+    display: flex;
+
+    margin: 0;
+    padding: 0;
+}
+
+.message {
+    padding: 15px;
+    margin-left: 20px;
+
+    border-radius: 3px 3px 3px 0;
+    border: 1px solid #D7DFE6;
+
+    position: relative;
+}
+
+/* указатель в сообщении*/
+.message:before {
+    content: '';
+    width: 11px;
+    height: 15px;
+
+    border-bottom: 1px solid #D7DFE6;
+    border-right: 2px solid #fff;
+
+    position: absolute;
+    left: -12px;
+    bottom: -1px;
+}
+
+.message:after {
+    content: '';
+    width: 30px;
+    height: 30px;
+
+    border-radius: 0 0 50% 0;
+    border-right: 1px solid #D7DFE6;
+
+    position: absolute;
+    bottom: 0;
+    left: -31px;
+}
+
+/*//////////////////*/
+
+.message_item_name {
+    font-size: 18px;
+    color: #4B5E94;
+}
+
+.message p {
+    margin: 0;
+}
+
+.message_item_photo {
+    width: 40px;
+    height: 40px;
+    align-self: end;
+
+    border-radius: 50%;
+}
+
+.message_item {
+    margin-bottom: 30px;
+}
+
+
