@@ -1,7 +1,7 @@
 import React from 'react';
-import style from './Aside.module.css';
+import style from './ProfilePhoto.module.css';
 
-const Aside = () => {
+const ProfilePhoto = () => {
     return (
         <aside className={style.main_style +' '+ style.aside}>
             {/*block with photo and description*/}
@@ -14,4 +14,4 @@ const Aside = () => {
     );
 };
 
-export default Aside;
+export default ProfilePhoto;
