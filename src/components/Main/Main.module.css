@@ -6,3 +6,10 @@
     flex-basis: 78%;
 }
 
+@media screen  and (max-width: 936px){
+    .main_wrapper {
+        flex-basis: auto;
+        margin-bottom: 100px;
+    }
+}
+

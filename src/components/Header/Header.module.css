@@ -1,4 +1,5 @@
 .main_header {
+    box-sizing: border-box;
     min-height: 50px;
     background: #fff;
     margin-bottom: 20px;
@@ -7,4 +8,18 @@
 .wrapper {
     width: 1200px;
     margin: 0 auto;
+}
+
+@media screen and (max-width: 1200px) {
+    .wrapper {
+        width: 900px;
+        margin: 0 auto;
+        padding: 10px;
+    }
+}
+
+@media screen and (max-width: 936px) {
+    .wrapper {
+        width: 100%;
+    }
 }

@@ -1,0 +1,13 @@
+.textarea {
+    box-sizing: border-box;
+    width: 100%;
+    margin: 15px 0;
+    padding: 10px;
+
+    border-radius: 3px;
+    border: 1px solid #D7DFE6;
+}
+
+.textarea:active {
+    border: 1px solid #4B5E94;
+}

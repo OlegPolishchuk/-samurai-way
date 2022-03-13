@@ -26,3 +26,45 @@
 .main_nav_inner a.active  {
     background: #DBE3EA;
 }
+
+
+@media screen and (max-width: 1200px){
+    .main_nav {
+        padding: 10px 8px;
+    }
+
+    .main_nav_inner a {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 936px){
+    .main_nav {
+        position: fixed;
+        bottom: 0;
+        left: 1%;
+        right: 1%;
+
+        margin: 0;
+        padding: 10px 0;
+
+        flex-basis: auto;
+
+        background: #fff;
+        border-radius: 3px;
+        border: 1px solid rgba(0,0,0,.2);
+    }
+
+    .main_nav_inner {
+        display: flex;
+        justify-content: space-around;
+
+        margin: 0;
+        padding: 0;
+    }
+
+    .main_nav_inner a {
+        width: auto;
+    }
+
+}

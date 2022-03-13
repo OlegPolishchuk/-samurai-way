@@ -1,9 +1,20 @@
 .profile_wrapper {
     display: flex;
     justify-content: space-between;
-    flex-basis: 30%;
     padding-bottom: 30px;
 
     border-bottom: 1px solid #D7DFE6;
+}
+
+@media screen and (max-width: 700px) {
+    .profile_wrapper {
+
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .profile_wrapper {
+        flex-direction: column;
+    }
 }
 
