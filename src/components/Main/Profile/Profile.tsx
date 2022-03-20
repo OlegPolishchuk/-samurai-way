@@ -5,18 +5,23 @@ import Posts from "../Posts/Posts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import {PostType} from "../../../App";
 
-type PostPropsType = {
+
+type PostsType = {
     posts: Array<PostType>
 }
+type PropsType = {
+    profilePage: PostsType
+}
 
-const Profile = (props: PostPropsType) => {
+const Profile = (props:PropsType) => {
+    const posts = props.profilePage.posts
     return (
         <>
             <div className={style.profile_wrapper}>
                 <ProfilePhoto/>
                 <ProfileInfo/>
             </div>
-            <Posts posts={props.posts}/>
+            <Posts posts={posts}/>
         </>
     );
 };
