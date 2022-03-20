@@ -28,21 +28,35 @@ export type PostType = {
     photo: string
     post: PostItemType
 }
-
-type PropsType = {
+type DialogsPageType = {
     data: Array<DataType>
     messages: Array<MessageType>
+}
+type ProfilePageType = {
     posts: Array<PostType>
 }
 
+type StateType = {
+    dialogsPage: DialogsPageType
+    profilePage: ProfilePageType
+}
+
+type PropsType = {
+    state: StateType
+}
+
 const App = (props: PropsType) => {
+    // разворачиваем объект state, что бы в компонент main закинуть отдельные части
+    const {data, messages} = props.state.dialogsPage;
+    const posts = props.state.profilePage.posts
+
     return (
         <BrowserRouter>
             <div className="App">
                 <Header/>
                 <div className={'wrapper'}>
                     <Navbar/>
-                    <Main data={props.data} messages={props.messages} posts={props.posts}/>
+                    <Main data={data} messages={messages} posts={posts}/>
                 </div>
             </div>
         </BrowserRouter>

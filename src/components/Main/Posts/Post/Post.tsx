@@ -2,9 +2,6 @@ import React from 'react';
 import style from "./Post.module.css";
 import Like from "../../Like/Like";
 
-// в качестве props передаем объект из Posts.tsx
-// в данном объекте есть свойства, который являются объектами,
-// так что нужно протипизировать кажыдй объект отдельно
 type PostPropsType = {
     id: number
     userName: string
