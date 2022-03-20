@@ -1,54 +1,56 @@
 import React from 'react';
 import style from './Dialogs.module.css';
 import {NavLink} from 'react-router-dom';
+import {DialogItem} from "./DialogItem/DialogItem";
+import {Message} from "./Message/Message";
 
-type DialogItemPropsType = {
-    name: string
-    avatar: string
-    id: number
-}
+// type DialogItemPropsType = {
+//     name: string
+//     avatar: string
+//     id: number
+// }
+//
+// const DialogItem = (props: DialogItemPropsType) => {
+//     const path = `/dialogs/${props.id}`
+//
+//     return (
+//         <figure className={style.dialog_item_wrapper}>
+//             <NavLink to={path} activeClassName={style.active} className={style.dialog_item}>
+//                 {/*user photo*/}
+//                 <img alt={'item_photo'} className={style.item_photo}
+//                      src={props.avatar}/>
+//                 <figcaption className={style.item_name}>
+//                     {/*user name*/}
+//                     <h3 className={style.dialog_item_name}>{props.name}</h3>
+//                 </figcaption>
+//             </NavLink>
+//         </figure>
+//     )
+// }
 
-const DialogItem = (props: DialogItemPropsType) => {
-    const path = `/dialogs/${props.id}`
-
-    return (
-        <figure className={style.dialog_item_wrapper}>
-            <NavLink to={path} activeClassName={style.active} className={style.dialog_item}>
-                {/*user photo*/}
-                <img alt={'item_photo'} className={style.item_photo}
-                     src={props.avatar}/>
-                <figcaption className={style.item_name}>
-                    {/*user name*/}
-                    <h3 className={style.dialog_item_name}>{props.name}</h3>
-                </figcaption>
-            </NavLink>
-        </figure>
-    )
-}
-
-type MessagePropsType = {
-    id: number
-    name: string
-    avatar: string
-    message: string
-}
-
-const Message = (props: MessagePropsType) => {
-
-    return (
-        <div className={style.message_item}>
-            {/*messages*/}
-            <figure>
-                <img alt={'user_photo'} className={style.message_item_photo}
-                     src={props.avatar}/>
-                <figcaption className={style.message}>
-                    <h3 className={style.message_item_name}>{props.name}</h3>
-                    <p>{props.message}</p>
-                </figcaption>
-            </figure>
-        </div>
-    )
-}
+// type MessagePropsType = {
+//     id: number
+//     name: string
+//     avatar: string
+//     message: string
+// }
+//
+// const Message = (props: MessagePropsType) => {
+//
+//     return (
+//         <div className={style.message_item}>
+//             {/*messages*/}
+//             <figure>
+//                 <img alt={'user_photo'} className={style.message_item_photo}
+//                      src={props.avatar}/>
+//                 <figcaption className={style.message}>
+//                     <h3 className={style.message_item_name}>{props.name}</h3>
+//                     <p>{props.message}</p>
+//                 </figcaption>
+//             </figure>
+//         </div>
+//     )
+// }
 
 
 const Dialogs = () => {
