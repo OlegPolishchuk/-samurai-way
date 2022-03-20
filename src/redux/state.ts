@@ -49,5 +49,8 @@ export const state = {
                 }
             }
         ]
+    },
+    sidebar: {
+
     }
 }
