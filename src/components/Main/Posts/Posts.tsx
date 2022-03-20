@@ -3,7 +3,24 @@ import style from './Posts.module.css';
 import Post from "./Post/Post";
 import NewPost from "./NewPost/NewPost";
 
-const Posts = () => {
+type PostItem = {
+    id: number
+    message: string
+    date: string
+}
+
+type PostsType = {
+    id: number
+    userName: string
+    photo: string
+    post: PostItem
+}
+
+type PostsPropsType = {
+    posts: Array<PostsType>
+}
+
+const Posts = (props: PostsPropsType) => {
     let posts = [
         {
             id: 1,
