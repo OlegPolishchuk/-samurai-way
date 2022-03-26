@@ -2,26 +2,11 @@ import React from 'react';
 import style from './Dialogs.module.css';
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
+import {DialogsPageType} from "../../App";
 
-type DataItemType = {
-    id: number
-    name: string
-    avatar: string
-}
-type MessageType = {
-    id: number
-    name: string
-    avatar: string
-    message: string
-}
-type DataType = {
-    data: Array<DataItemType>
-    messages: Array<MessageType>
-}
 type DialogsPagePropsType = {
-    dialogsPage: DataType
+    dialogsPage: DialogsPageType
 }
-
 
 const Dialogs = (props: DialogsPagePropsType) => {
     // дестркутуризация пропсов

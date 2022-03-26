@@ -25,7 +25,7 @@ export type DialogsPageType = {
 }
 ///////////////////////////////
 // Profile page types
-type PostItemType = {
+export type PostItemType = {
     id: number
     message: string
     date: string
