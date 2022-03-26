@@ -3,14 +3,15 @@ import style from './Profile.module.css';
 import ProfilePhoto from "./ProfilePhoto/ProfilePhoto";
 import Posts from "../Posts/Posts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import {PostType} from "../../../App";
+import {PostType, ProfilePageType} from "../../../App";
 
 
-type PostsType = {
-    posts: Array<PostType>
-}
+// type PostsType = {
+//     posts: Array<PostType>
+// }
+// export ProfilePageType from App
 type PropsType = {
-    profilePage: PostsType
+    profilePage: ProfilePageType
 }
 
 const Profile = (props:PropsType) => {

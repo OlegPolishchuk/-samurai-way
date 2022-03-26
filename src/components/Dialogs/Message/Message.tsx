@@ -2,12 +2,7 @@ import style from "../Dialogs.module.css";
 import React from "react";
 import {MessageType} from "../../../App";
 
-// type MessagePropsType = {
-//     id: number
-//     name: string
-//     avatar: string
-//     message: string
-// }
+
 // Экспортируем MessageType из App
 
 export const Message = (props: MessageType) => {
