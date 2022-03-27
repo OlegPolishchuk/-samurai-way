@@ -1,14 +1,20 @@
 import React from 'react';
 import style from './NewPost.module.css';
 
-const NewPost = () => {
+type NewPostPropsType = {
+    addPost: (text: string)=> void
+}
+
+const NewPost = (props:NewPostPropsType) => {
     const newPostElement = React.createRef<HTMLTextAreaElement>();
 
     const totalClassName =  'common_btn'
 
-    const addPost = () => {
-        const text = newPostElement.current?.value
-        alert(text)
+    const onClickBtnHandler = () => {
+        if (newPostElement.current) {
+            const text = newPostElement.current.value
+            props.addPost(text)
+        }
     }
 
     return (
@@ -18,7 +24,7 @@ const NewPost = () => {
                 placeholder={'write new post'}
                 className={style.textarea} />
             <button
-                onClick={ addPost }
+                onClick={ onClickBtnHandler }
                 className={totalClassName}
             >
                 Add

@@ -23,7 +23,6 @@ const Dialogs = (props: DialogsPagePropsType) => {
             </aside>
             <main className={style.messages}>
                 { messageList }
-                <NewPost/>
             </main>
         </div>
     );
