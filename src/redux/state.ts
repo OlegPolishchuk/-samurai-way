@@ -1,5 +1,6 @@
 /// DialogsPage types
 import {v1} from "uuid";
+import {renderTree} from "../render";
 
 export type DataType = {
     id: string
@@ -102,6 +103,7 @@ export const addPost = (text: string) => {
     }
     console.log(newPost)
     state.profilePage.posts.push(newPost)
+    renderTree(state)
 }
 
 export const addMessage = (text: string) => {
@@ -114,4 +116,5 @@ export const addMessage = (text: string) => {
 
     console.log(newMessage)
     state.dialogsPage.messages.push(newMessage)
+    renderTree(state)
 }
