@@ -1,3 +1,10 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-bottom: 25px;
+}
+
 .textarea {
     box-sizing: border-box;
     width: 100%;
@@ -6,6 +13,11 @@
 
     border-radius: 3px;
     border: 1px solid #D7DFE6;
+}
+
+.textarea:focus {
+    border: 1px solid #4B5E94;
+    outline: none;
 }
 
 .textarea:active {

@@ -2,7 +2,8 @@ import React from 'react';
 import style from './Dialogs.module.css';
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
-import {DialogsPageType} from "../../App";
+import NewPost from "../Main/Posts/NewPost/NewPost";
+import {DialogsPageType} from "../../redux/state";
 
 type DialogsPagePropsType = {
     dialogsPage: DialogsPageType
@@ -22,6 +23,7 @@ const Dialogs = (props: DialogsPagePropsType) => {
             </aside>
             <main className={style.messages}>
                 { messageList }
+                <NewPost/>
             </main>
         </div>
     );

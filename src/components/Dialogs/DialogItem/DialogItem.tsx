@@ -1,7 +1,7 @@
 import React from 'react';
 import style from "../Dialogs.module.css";
 import {NavLink} from "react-router-dom";
-import {DataType} from "../../../App";
+import {DataType} from "../../../redux/state";
 
 
 // export DataType from App

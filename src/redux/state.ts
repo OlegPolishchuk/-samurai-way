@@ -1,5 +1,52 @@
+/// DialogsPage types
+export type DataType = {
+    id: number
+    name: string
+    avatar: string
+}
 
-export const state = {
+export type MessageType = {
+    id: number
+    name: string
+    avatar: string
+    message: string
+}
+
+export type DialogsPageType = {
+    data: Array<DataType>
+    messages: Array<MessageType>
+}
+
+// Profile page types
+export type PostItemType = {
+    id: number
+    message: string
+    date: string
+}
+
+export type PostType = {
+    id: number
+    userName: string
+    photo: string
+    post: PostItemType
+}
+
+export type ProfilePageType = {
+    posts: Array<PostType>
+}
+// Sidebar type
+type SidebarType = {}
+
+// RootState type
+
+export type RootStateType = {
+    dialogsPage: DialogsPageType
+    profilePage: ProfilePageType
+    sidebar: SidebarType
+}
+
+// State
+export const state: RootStateType = {
     dialogsPage: {
         data: [
             {id : 1, name: 'Piter Parker', avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaNUr6_D1h11lM3KnJ_CgXxwoGF7mU7fIvxA&usqp=CAU\''},
@@ -50,7 +97,5 @@ export const state = {
             }
         ]
     },
-    sidebar: {
-
-    }
+    sidebar: {}
 }

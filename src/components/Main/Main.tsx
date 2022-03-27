@@ -3,16 +3,17 @@ import style from './Main.module.css';
 import Profile from "./Profile/Profile";
 import Dialogs from "../Dialogs/Dialogs";
 import {Route} from "react-router-dom";
-import {StateType} from "../../App";
+import {DialogsPageType, ProfilePageType} from "../../redux/state";
 
 
 type PropsType = {
-    state: StateType
+    dialogsPage : DialogsPageType
+    profilePage: ProfilePageType
 }
 
 const Main = (props: PropsType) => {
 
-    const {profilePage, dialogsPage} = props.state;
+    const {profilePage, dialogsPage} = props;
     return (
         <main className={style.main_wrapper +' main_style'}>
             <Route path={'/profile'} render={()=> <Profile profilePage={profilePage}/>} />
