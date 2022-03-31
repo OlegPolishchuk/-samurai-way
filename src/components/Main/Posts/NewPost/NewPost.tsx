@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import style from './NewPost.module.css';
 import {updateNewPostText} from "../../../../redux/state";
 
@@ -9,7 +9,6 @@ type NewPostPropsType = {
 }
 
 const NewPost = (props:NewPostPropsType) => {
-    const newPostElement = React.createRef<HTMLTextAreaElement>();
 
     const totalClassName =  'common_btn'
 
@@ -17,21 +16,18 @@ const NewPost = (props:NewPostPropsType) => {
         props.addPost()
     }
 
-    const onChangeTextarea = () => {
-        if (newPostElement.current) {
-            const text = newPostElement.current.value
-            updateNewPostText(text)
-        }
+    const onChangeTextareaHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        const text = e.currentTarget.value
+        updateNewPostText(text)
     }
 
     return (
         <div className={style.wrapper}>
             <textarea
                 value={props.newPostText}
-                ref={newPostElement}
                 placeholder={'write new post'}
                 className={style.textarea}
-                onChange={onChangeTextarea}
+                onChange={onChangeTextareaHandler}
             />
             <button
                 onClick={ onClickBtnHandler }
