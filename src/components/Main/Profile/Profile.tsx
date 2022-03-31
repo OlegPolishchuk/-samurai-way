@@ -3,15 +3,16 @@ import style from './Profile.module.css';
 import ProfilePhoto from "./ProfilePhoto/ProfilePhoto";
 import Posts from "../Posts/Posts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import {ProfilePageType} from "../../../redux/state";
+import {ProfilePageType, updateNewPostText} from "../../../redux/state";
 
 type ProfilePagePropsType = ProfilePageType & {
-    addPost: (text: string) => void
+    addPost: () => void
+    updateNewPostText: (newText: string) => void
 }
 
 const Profile = (props:ProfilePagePropsType) => {
 
-    const posts = props.posts
+    const {posts, newPostText, updateNewPostText} = props
 
     return (
         <>
@@ -22,6 +23,8 @@ const Profile = (props:ProfilePagePropsType) => {
             <Posts
                 posts={posts}
                 addPost={props.addPost}
+                newPostText={newPostText}
+                updateNewPostText={updateNewPostText}
             />
         </>
     );

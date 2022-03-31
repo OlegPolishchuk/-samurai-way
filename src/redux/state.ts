@@ -29,6 +29,7 @@ export type PostType = {
 }
 export type ProfilePageType = {
     posts: Array<PostType>
+    newPostText: string
 }
 
 // Sidebar type
@@ -87,22 +88,24 @@ export const state: RootStateType = {
                 date: new Date().toISOString(),
                 likeCount: 0
             }
-        ]
+        ],
+        newPostText: '',
     },
     sidebar: {}
 }
 
-export const addPost = (text: string) => {
+export const addPost = () => {
     const newPost: PostType = {
         id: v1(),
         date: new Date().toISOString(),
-        post: text,
+        post: state.profilePage.newPostText,
         likeCount: 0,
         userName: 'Oleg',
         photo: ''
     }
     console.log(newPost)
     state.profilePage.posts.push(newPost)
+    state.profilePage.newPostText = ''
     renderTree(state)
 }
 
@@ -116,5 +119,10 @@ export const addMessage = (text: string) => {
 
     console.log(newMessage)
     state.dialogsPage.messages.push(newMessage)
+    renderTree(state)
+}
+
+export const updateNewPostText = (newText: string) => {
+    state.profilePage.newPostText = newText
     renderTree(state)
 }
