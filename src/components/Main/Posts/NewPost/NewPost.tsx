@@ -1,6 +1,6 @@
 import React, {ChangeEvent} from 'react';
 import style from './NewPost.module.css';
-import {updateNewPostText} from "../../../../redux/state";
+
 
 type NewPostPropsType = {
     addPost: ()=> void
@@ -18,7 +18,7 @@ const NewPost = (props:NewPostPropsType) => {
 
     const onChangeTextareaHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         const text = e.currentTarget.value
-        updateNewPostText(text)
+        props.updateNewPostText(text)
     }
 
     return (
