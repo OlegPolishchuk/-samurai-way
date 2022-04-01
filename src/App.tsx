@@ -4,11 +4,18 @@ import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 import Navbar from "./components/Navbar/Navbar";
 import {BrowserRouter} from "react-router-dom";
-import {addPost, state, updateNewPostText} from './redux/state'
+import {RootStateType} from './redux/state'
+
+type AppPropsType = {
+    state: RootStateType
+    addPost: () => void
+    updateNewPostText: (newText: string) => void
+}
 
 
+const App: React.FC<AppPropsType> = (props) => {
 
-const App = () => {
+    const {state, addPost, updateNewPostText} = props;
 
     return (
         <BrowserRouter>

@@ -1,7 +1,16 @@
-/// DialogsPage types
+// id
 import {v1} from "uuid";
-import {renderTree} from "../render";
 
+// observer
+
+let renderTree = () => { console.log('renderTree') }
+
+export const subscribe = (callback: () => void) => {
+    renderTree = callback
+}
+
+
+/// DialogsPage types
 export type DataType = {
     id: string
     name: string
@@ -106,7 +115,7 @@ export const addPost = () => {
     console.log(newPost)
     state.profilePage.posts.push(newPost)
     state.profilePage.newPostText = ''
-    renderTree(state)
+    renderTree()
 }
 
 export const addMessage = (text: string) => {
@@ -119,10 +128,10 @@ export const addMessage = (text: string) => {
 
     console.log(newMessage)
     state.dialogsPage.messages.push(newMessage)
-    renderTree(state)
+    renderTree()
 }
 
 export const updateNewPostText = (newText: string) => {
     state.profilePage.newPostText = newText
-    renderTree(state)
+    renderTree()
 }

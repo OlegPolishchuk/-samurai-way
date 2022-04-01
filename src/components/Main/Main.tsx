@@ -3,7 +3,7 @@ import style from './Main.module.css';
 import Profile from "./Profile/Profile";
 import Dialogs from "../Dialogs/Dialogs";
 import {Route} from "react-router-dom";
-import {DialogsPageType, ProfilePageType, updateNewPostText} from "../../redux/state";
+import {DialogsPageType, ProfilePageType} from "../../redux/state";
 
 
 type PropsType = {
