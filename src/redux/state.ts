@@ -44,21 +44,26 @@ export type RootStateType = {
 
 //////////////////////////
 // dispatch methods types
-
-type AddPostActionType = {
-    type: 'ADD-POST'
-}
-
-type UpdateNewPostTextActionType = {
-    type: 'UPDATE-NEW-POST-TEXT'
-    newText: string
-}
 //что бы было удобней типизировать action в компонентах, обьеденим все типы в один:
+export type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostTextAC>
 
-export type ActionsTypes = AddPostActionType | UpdateNewPostTextActionType
+/////////////////////////
+//actionCreators
+export const addPostAC = () => {
+    return {
+        type: 'ADD-POST'
+    } as const
+}
+
+export const updateNewPostTextAC = (newText: string) => {
+    return {
+        type: "UPDATE-NEW-POST-TEXT",
+        newText: newText
+    } as const
+}
+
 /////////////////////////
 // State
-
 export type StoreType = {
     _state: RootStateType
     _renderTree: () => void
@@ -173,7 +178,7 @@ export const store: StoreType = {
     //     this._renderTree()
     // },
     dispatch(action) {
-        // action = эт овсегда объект,который описывает действие { type: 'ADD-POST' }, { type: 'UPDATE POST' }
+        // action = это всегда объект,который описывает действие { type: 'ADD-POST' }, { type: 'UPDATE POST' }
         // другие даныне по необходимости
         if (action.type === 'ADD-POST') {
             const newPost: PostType = {

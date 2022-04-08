@@ -1,6 +1,6 @@
 import React, {ChangeEvent} from 'react';
 import style from './NewPost.module.css';
-import {ActionsTypes} from "../../../../redux/state";
+import {ActionsTypes, addPostAC, updateNewPostTextAC} from "../../../../redux/state";
 
 
 type NewPostPropsType = {
@@ -15,18 +15,19 @@ const NewPost = (props:NewPostPropsType) => {
     const totalClassName =  'common_btn'
 
     const onClickBtnHandler = () => {
-        props.dispatch({
-            type: 'ADD-POST'
-        })
+        // props.dispatch({type: 'ADD-POST'}) // del
+        props.dispatch(addPostAC())
     }
 
     const onChangeTextareaHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         const text = e.currentTarget.value
         // props.updateNewPostText(text) //del
-        props.dispatch({
-            type: 'UPDATE-NEW-POST-TEXT',
-            newText: text
-        })
+        // props.dispatch({
+        //     type: 'UPDATE-NEW-POST-TEXT',
+        //     newText: text
+        // })
+
+        props.dispatch(updateNewPostTextAC(text))
     }
 
     return (
