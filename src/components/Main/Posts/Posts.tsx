@@ -2,18 +2,20 @@ import React from 'react';
 import style from './Posts.module.css';
 import Post from "./Post/Post";
 import NewPost from "./NewPost/NewPost";
-import {PostType} from "../../../redux/state";
+import {ActionsTypes, PostType} from "../../../redux/state";
 
 
 type PostsPropsType = {
     posts: Array<PostType>
-    addPost: ()=> void
+    // addPost: ()=> void
     newPostText: string
-    updateNewPostText: (newText: string) => void
+    // updateNewPostText: (newText: string) => void
+    dispatch: (action: ActionsTypes) => void
 }
 
 const Posts = (props: PostsPropsType) => {
-    const {posts, newPostText, updateNewPostText} = props
+    // const {posts, newPostText, updateNewPostText} = props
+    const {posts, newPostText, dispatch} = props
 
     let postElements = posts.map(el => {
         return (
@@ -31,9 +33,10 @@ const Posts = (props: PostsPropsType) => {
     return (
         <section className={style.post_wrapper}>
             <NewPost
-                addPost={props.addPost}
+                // addPost={dispatch} //del
                 newPostText={newPostText}
-                updateNewPostText={updateNewPostText}
+                // updateNewPostText={dispatch} //del
+                dispatch={dispatch}
             />
             { postElements }
         </section>

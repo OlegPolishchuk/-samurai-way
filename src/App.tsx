@@ -23,8 +23,9 @@ const App: React.FC<AppPropsType> = (props) => {
                     <Main
                         profilePage={state.profilePage}
                         dialogsPage={state.dialogsPage}
-                        addPost={props.store.addPost.bind(props.store)}
-                        updateNewPostText={props.store.updateNewPostText.bind(props.store)}
+                        // addPost={props.store.addPost.bind(props.store)}
+                        // updateNewPostText={props.store.updateNewPostText.bind(props.store)}
+                        dispatch={props.store.dispatch.bind(props.store)}
                     />
                 </div>
             </div>

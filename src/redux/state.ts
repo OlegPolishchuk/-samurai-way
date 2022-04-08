@@ -17,7 +17,7 @@ export type DialogsPageType = {
     data: Array<DataType>
     messages: Array<MessageType>
 }
-
+///////////////////////////
 // Profile page types
 export type PostType = {
     id: string
@@ -31,10 +31,10 @@ export type ProfilePageType = {
     posts: Array<PostType>
     newPostText: string
 }
-
+//////////////////////////
 // Sidebar type
 type SidebarType = {}
-
+//////////////////////////
 // RootState type
 export type RootStateType = {
     dialogsPage: DialogsPageType
@@ -42,16 +42,32 @@ export type RootStateType = {
     sidebar: SidebarType
 }
 
+//////////////////////////
+// dispatch methods types
+
+type AddPostActionType = {
+    type: 'ADD-POST'
+}
+
+type UpdateNewPostTextActionType = {
+    type: 'UPDATE-NEW-POST-TEXT'
+    newText: string
+}
+//что бы было удобней типизировать action в компонентах, обьеденим все типы в один:
+
+export type ActionsTypes = AddPostActionType | UpdateNewPostTextActionType
+/////////////////////////
 // State
 
 export type StoreType = {
     _state: RootStateType
-    renderTree: () => void
+    _renderTree: () => void
     subscribe: (callback: () => void) => void
-    addPost: () => void
-    addMessage: (text: string) => void,
-    updateNewPostText: (newText: string) => void
+    // addPost: () => void
+    // addMessage: (text: string) => void,
+    // updateNewPostText: (newText: string) => void
     getState: () => RootStateType
+    dispatch: (action: ActionsTypes) => void
 }
 
 export const store: StoreType = {
@@ -117,43 +133,67 @@ export const store: StoreType = {
         },
         sidebar: {}
     },
-    renderTree() { console.log('renderTree') },
-    subscribe(callback: () => void){
-        this.renderTree = callback
+    _renderTree() { // callSubscriber()
+        console.log('renderTree')
     },
-    addPost() {
-        const newPost: PostType = {
-            id: v1(),
-            date: new Date().toISOString(),
-            post: this._state.profilePage.newPostText,
-            likeCount: 0,
-            userName: 'Oleg',
-            photo: ''
-        }
-        console.log(newPost)
-        this._state.profilePage.posts.push(newPost)
-        this._state.profilePage.newPostText = ''
-        this.renderTree()
+    subscribe(callback: () => void) {
+        this._renderTree = callback
     },
-    addMessage(text: string) {
-        // const newMessage: MessageType = {
-        //     id: v1(),
-        //     name: 'oleg',
-        //     avatar: '',
-        //     message: text
-        // }
-        //
-        // console.log(newMessage)
-        // this._state.dialogsPage.messages.push(newMessage)
-        // renderTree()
-    },
-    updateNewPostText(newText) {
-        this._state.profilePage.newPostText = newText
-        this.renderTree()
-    },
-    getState(){
+    getState() {
         return this._state
+    },
+    // addPost() {
+    //     const newPost: PostType = {
+    //         id: v1(),
+    //         date: new Date().toISOString(),
+    //         post: this._state.profilePage.newPostText,
+    //         likeCount: 0,
+    //         userName: 'Oleg',
+    //         photo: ''
+    //     }
+    //     console.log(newPost)
+    //     this._state.profilePage.posts.push(newPost)
+    //     this._state.profilePage.newPostText = ''
+    //     this._renderTree()
+    // },
+    // addMessage(text: string) {
+    //     // const newMessage: MessageType = {
+    //     //     id: v1(),
+    //     //     name: 'oleg',
+    //     //     avatar: '',
+    //     //     message: text
+    //     // }
+    //     //
+    //     // console.log(newMessage)
+    //     // this._state.dialogsPage.messages.push(newMessage)
+    //     // renderTree()
+    // },
+    // updateNewPostText(newText) {
+    //     this._state.profilePage.newPostText = newText
+    //     this._renderTree()
+    // },
+    dispatch(action) {
+        // action = эт овсегда объект,который описывает действие { type: 'ADD-POST' }, { type: 'UPDATE POST' }
+        // другие даныне по необходимости
+        if (action.type === 'ADD-POST') {
+            const newPost: PostType = {
+                id: v1(),
+                date: new Date().toISOString(),
+                post: this._state.profilePage.newPostText,
+                likeCount: 0,
+                userName: 'Oleg',
+                photo: ''
+            }
+            console.log(newPost)
+            this._state.profilePage.posts.push(newPost)
+            this._state.profilePage.newPostText = ''
+            this._renderTree()
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._state.profilePage.newPostText = action.newText
+            this._renderTree()
+        }
     }
+
 }
 
 
