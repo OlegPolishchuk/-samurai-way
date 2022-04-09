@@ -49,6 +49,7 @@ export type RootStateType = {
 export type ActionsTypes = ReturnType<typeof addPostAC>
     | ReturnType<typeof updateNewPostTextAC>
     | ReturnType<typeof AddNewMessageAC>
+    | ReturnType<typeof updateNewMessageTextAC>
 
 /////////////////////////
 //actionCreators
@@ -65,10 +66,16 @@ export const updateNewPostTextAC = (newText: string) => {
     } as const
 }
 
-export const AddNewMessageAC = (newMessage: string) => {
+export const AddNewMessageAC = () => {
     return {
-        type: 'ADD-MESSAGE',
-        newMessage
+        type: 'ADD-MESSAGE'
+    } as const
+}
+
+export const updateNewMessageTextAC = (newText: string) => {
+    return {
+        type: 'UPDATE-NEW-MESSAGE-TEXT',
+        newText
     } as const
 }
 
@@ -220,6 +227,10 @@ export const store: StoreType = {
             console.log(newMessage)
             this._state.dialogsPage.messages.unshift(newMessage)
             this._state.dialogsPage.newMessageText = ''
+            this._renderTree()
+        }
+        else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
+            this._state.dialogsPage.newMessageText = action.newText
             this._renderTree()
         }
     }

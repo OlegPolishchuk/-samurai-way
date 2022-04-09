@@ -2,7 +2,7 @@ import React from 'react';
 import style from './Dialogs.module.css';
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
-import {ActionsTypes, DialogsPageType} from "../../redux/state";
+import {ActionsTypes, AddNewMessageAC, DialogsPageType, updateNewMessageTextAC} from "../../redux/state";
 import TextArea from "../TextArea/TextArea";
 
 type DialogsPagePropsType = {
@@ -15,6 +15,14 @@ const Dialogs = (props: DialogsPagePropsType) => {
     // дестркутуризация пропсов
     const {data, messages, newMessageText} = props.dialogsPage;
 
+    const onChangeTextHandler = (text: string) => {
+        props.dispatch(updateNewMessageTextAC(text))
+    }
+
+    const addMessageHandler = () => {
+        props.dispatch(AddNewMessageAC())
+    }
+
     let dialogList = data.map(el =>  <DialogItem key={el.id} name={el.name} avatar={el.avatar} id={el.id}/>);
     let messageList = messages.map(el => <Message key={el.id} id={el.id} name={el.name} avatar={el.avatar} message={el.message} />);
 
@@ -26,7 +34,7 @@ const Dialogs = (props: DialogsPagePropsType) => {
             <main className={style.messages}>
                 { messageList }
             </main>
-            {/*<TextArea newPostText={newMessageText} dispatch={props.dispatch} />*/}
+            <TextArea newPostText={newMessageText} onChangeText={onChangeTextHandler} onClickCallback={addMessageHandler}/>
         </div>
     );
 };

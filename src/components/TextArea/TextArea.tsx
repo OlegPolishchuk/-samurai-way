@@ -1,6 +1,5 @@
-import React, {ButtonHTMLAttributes, ChangeEvent, DetailedHTMLProps, TextareaHTMLAttributes, useState} from 'react';
+import React, {ButtonHTMLAttributes, ChangeEvent, DetailedHTMLProps, TextareaHTMLAttributes,KeyboardEvent, useState} from 'react';
 import s from './TextArea.module.css';
-import {ActionsTypes, addPostAC, updateNewPostTextAC} from "../../redux/state";
 
 type DefaultTextAreaPropsType = DetailedHTMLProps<TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement>
 type DefaultButtonPropsType = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
@@ -33,7 +32,7 @@ const TextArea: React.FC<TextAreaPropsType> = (props) => {
     const finalSpanClassName = spanClassName ? spanClassName : `${s.error}`
 
 
-    const totalClassName =  'common_btn'
+    const totalBtnClassName =  'common_btn'
 
     const onClickBtnHandler = () => {
         const trimmedText = newPostText.trim()
@@ -46,6 +45,16 @@ const TextArea: React.FC<TextAreaPropsType> = (props) => {
             setErrorMsg('')
         }
     }
+
+    // const onKeyPressHandler = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+    //     // need to fix it
+    //     // onKeyPress && onKeyPress(e)
+    //     // onEnter && e.key === 'Enter' && onEnter()
+    //     if (e.key === 'Enter') {
+    //         console.log('')
+    //         onClickBtnHandler()
+    //     }
+    // }
 
     const onChangeTextareaHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setErrorMsg('')
@@ -61,14 +70,17 @@ const TextArea: React.FC<TextAreaPropsType> = (props) => {
                 placeholder={'write new post'}
                 className={s.textarea}
                 onChange={onChangeTextareaHandler}
+                // onKeyPress={onKeyPressHandler}
 
                 {...restProps}
             />
-            <div>
-                {finalErrorMsg && <span className={finalSpanClassName}>{errorMsg}</span>}
+            <div className={s.error_wrapper}>
+                <div className={s.error_container}>
+                    {finalErrorMsg && <span className={finalSpanClassName}>{errorMsg}</span>}
+                </div>
                 <button
                     onClick={ onClickBtnHandler }
-                    className={totalClassName}
+                    className={totalBtnClassName}
                 >
                     Add
                 </button>
