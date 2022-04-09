@@ -1,5 +1,7 @@
 // id
 import {v1} from "uuid";
+import profileRedicer, {addPostAC, updateNewPostTextAC} from "./profile-redicer";
+import dialogsReducer, {SendNewMessageAC, updateNewMessageTextAC} from "./dialogs-reducer";
 
 /// DialogsPage types
 export type DataType = {
@@ -48,36 +50,10 @@ export type RootStateType = {
 //что бы было удобней типизировать action в компонентах, обьеденим все типы в один:
 export type ActionsTypes = ReturnType<typeof addPostAC>
     | ReturnType<typeof updateNewPostTextAC>
-    | ReturnType<typeof AddNewMessageAC>
+    | ReturnType<typeof SendNewMessageAC>
     | ReturnType<typeof updateNewMessageTextAC>
 
 /////////////////////////
-//actionCreators
-export const addPostAC = () => {
-    return {
-        type: 'ADD-POST'
-    } as const
-}
-
-export const updateNewPostTextAC = (newText: string) => {
-    return {
-        type: "UPDATE-NEW-POST-TEXT",
-        newText
-    } as const
-}
-
-export const AddNewMessageAC = () => {
-    return {
-        type: 'ADD-MESSAGE'
-    } as const
-}
-
-export const updateNewMessageTextAC = (newText: string) => {
-    return {
-        type: 'UPDATE-NEW-MESSAGE-TEXT',
-        newText
-    } as const
-}
 
 /////////////////////////
 // State
@@ -85,9 +61,6 @@ export type StoreType = {
     _state: RootStateType
     _renderTree: () => void
     subscribe: (callback: () => void) => void
-    // addPost: () => void
-    // addMessage: (text: string) => void,
-    // updateNewPostText: (newText: string) => void
     getState: () => RootStateType
     dispatch: (action: ActionsTypes) => void
 }
@@ -165,74 +138,13 @@ export const store: StoreType = {
     getState() {
         return this._state
     },
-    // addPost() {
-    //     const newPost: PostType = {
-    //         id: v1(),
-    //         date: new Date().toISOString(),
-    //         post: this._state.profilePage.newPostText,
-    //         likeCount: 0,
-    //         userName: 'Oleg',
-    //         photo: ''
-    //     }
-    //     console.log(newPost)
-    //     this._state.profilePage.posts.push(newPost)
-    //     this._state.profilePage.newPostText = ''
-    //     this._renderTree()
-    // },
-    // addMessage(text: string) {
-    //     // const newMessage: MessageType = {
-    //     //     id: v1(),
-    //     //     name: 'oleg',
-    //     //     avatar: '',
-    //     //     message: text
-    //     // }
-    //     //
-    //     // console.log(newMessage)
-    //     // this._state.dialogsPage.messages.push(newMessage)
-    //     // renderTree()
-    // },
-    // updateNewPostText(newText) {
-    //     this._state.profilePage.newPostText = newText
-    //     this._renderTree()
-    // },
     dispatch(action) {
         // action = это всегда объект,который описывает действие { type: 'ADD-POST' }, { type: 'UPDATE POST' }
         // другие даныне по необходимости
-        if (action.type === 'ADD-POST') {
-            const newPost: PostType = {
-                id: v1(),
-                date: new Date().toISOString(),
-                post: this._state.profilePage.newPostText,
-                likeCount: 0,
-                userName: 'Oleg',
-                photo: ''
-            }
-            console.log(newPost)
-            this._state.profilePage.posts.unshift(newPost)
-            this._state.profilePage.newPostText = ''
-            this._renderTree()
-        }
-        else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            this._state.profilePage.newPostText = action.newText
-            this._renderTree()
-        }
-        else if (action.type === 'ADD-MESSAGE') {
-            const newMessage: MessageType = {
-                id: v1(),
-                name: 'Oleg', //need to update!!
-                avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaNUr6_D1h11lM3KnJ_CgXxwoGF7mU7fIvxA&usqp=CAU\'',
-                message: this._state.dialogsPage.newMessageText
-            }
-            // Проверка
-            console.log(newMessage)
-            this._state.dialogsPage.messages.push(newMessage)
-            this._state.dialogsPage.newMessageText = ''
-            this._renderTree()
-        }
-        else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
-            this._state.dialogsPage.newMessageText = action.newText
-            this._renderTree()
-        }
+        // отдаем логику по изменению стейта to reducer
+        this._state.profilePage = profileRedicer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        this._renderTree()
     }
 
 }

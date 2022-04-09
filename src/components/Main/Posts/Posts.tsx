@@ -2,7 +2,8 @@ import React from 'react';
 import style from './Posts.module.css';
 import Post from "./Post/Post";
 import TextArea from "../../TextArea/TextArea";
-import {ActionsTypes, addPostAC, PostType, updateNewPostTextAC} from "../../../redux/state";
+import {ActionsTypes, PostType} from "../../../redux/state";
+import {addPostAC, updateNewPostTextAC} from "../../../redux/profile-redicer";
 
 
 type PostsPropsType = {
