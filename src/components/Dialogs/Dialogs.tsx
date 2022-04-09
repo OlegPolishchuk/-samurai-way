@@ -33,8 +33,11 @@ const Dialogs = (props: DialogsPagePropsType) => {
             </aside>
             <main className={style.messages}>
                 { messageList }
+                <TextArea newPostText={newMessageText}
+                          onChangeText={onChangeTextHandler}
+                          onClickCallback={addMessageHandler}
+                />
             </main>
-            <TextArea newPostText={newMessageText} onChangeText={onChangeTextHandler} onClickCallback={addMessageHandler}/>
         </div>
     );
 };

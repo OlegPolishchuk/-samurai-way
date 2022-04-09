@@ -95,7 +95,7 @@ figure {
 
 .message {
     width: 100%;
-    padding: 15px;
+    padding: 10px;
     margin-left: 20px;
 
     border-radius: 3px 3px 3px 0;
@@ -103,6 +103,7 @@ figure {
 
     position: relative;
 }
+
 
 /* указатель в сообщении*/
 .message:before {
@@ -136,10 +137,12 @@ figure {
 .message_item_name {
     font-size: 18px;
     color: #4B5E94;
+
+    margin: 0;
 }
 
 .message p {
-    margin: 0;
+    margin: 8px 0;
 }
 
 .message_item_photo {

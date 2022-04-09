@@ -225,7 +225,7 @@ export const store: StoreType = {
             }
             // Проверка
             console.log(newMessage)
-            this._state.dialogsPage.messages.unshift(newMessage)
+            this._state.dialogsPage.messages.push(newMessage)
             this._state.dialogsPage.newMessageText = ''
             this._renderTree()
         }
