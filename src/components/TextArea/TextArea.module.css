@@ -23,3 +23,7 @@
 .textarea:active {
     border: 1px solid #4B5E94;
 }
+
+.error {
+    color: red
+}

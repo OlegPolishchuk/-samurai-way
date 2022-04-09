@@ -16,6 +16,7 @@ export type MessageType = {
 export type DialogsPageType = {
     data: Array<DataType>
     messages: Array<MessageType>
+    newMessageText: string
 }
 ///////////////////////////
 // Profile page types
@@ -45,7 +46,9 @@ export type RootStateType = {
 //////////////////////////
 // dispatch methods types
 //что бы было удобней типизировать action в компонентах, обьеденим все типы в один:
-export type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostTextAC>
+export type ActionsTypes = ReturnType<typeof addPostAC>
+    | ReturnType<typeof updateNewPostTextAC>
+    | ReturnType<typeof AddNewMessageAC>
 
 /////////////////////////
 //actionCreators
@@ -58,7 +61,14 @@ export const addPostAC = () => {
 export const updateNewPostTextAC = (newText: string) => {
     return {
         type: "UPDATE-NEW-POST-TEXT",
-        newText: newText
+        newText
+    } as const
+}
+
+export const AddNewMessageAC = (newMessage: string) => {
+    return {
+        type: 'ADD-MESSAGE',
+        newMessage
     } as const
 }
 
@@ -108,7 +118,8 @@ export const store: StoreType = {
                     avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaNUr6_D1h11lM3KnJ_CgXxwoGF7mU7fIvxA&usqp=CAU\'',
                     message: 'Hello everyone!!!'
                 }
-            ]
+            ],
+            newMessageText: ''
         },
         profilePage: {
             posts: [
@@ -190,11 +201,25 @@ export const store: StoreType = {
                 photo: ''
             }
             console.log(newPost)
-            this._state.profilePage.posts.push(newPost)
+            this._state.profilePage.posts.unshift(newPost)
             this._state.profilePage.newPostText = ''
             this._renderTree()
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+        }
+        else if (action.type === 'UPDATE-NEW-POST-TEXT') {
             this._state.profilePage.newPostText = action.newText
+            this._renderTree()
+        }
+        else if (action.type === 'ADD-MESSAGE') {
+            const newMessage: MessageType = {
+                id: v1(),
+                name: 'Oleg', //need to update!!
+                avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaNUr6_D1h11lM3KnJ_CgXxwoGF7mU7fIvxA&usqp=CAU\'',
+                message: this._state.dialogsPage.newMessageText
+            }
+            // Проверка
+            console.log(newMessage)
+            this._state.dialogsPage.messages.unshift(newMessage)
+            this._state.dialogsPage.newMessageText = ''
             this._renderTree()
         }
     }

@@ -1,8 +1,8 @@
 import React from 'react';
 import style from './Posts.module.css';
 import Post from "./Post/Post";
-import NewPost from "./NewPost/NewPost";
-import {ActionsTypes, PostType} from "../../../redux/state";
+import TextArea from "../../TextArea/TextArea";
+import {ActionsTypes, addPostAC, PostType, updateNewPostTextAC} from "../../../redux/state";
 
 
 type PostsPropsType = {
@@ -16,6 +16,15 @@ type PostsPropsType = {
 const Posts = (props: PostsPropsType) => {
     // const {posts, newPostText, updateNewPostText} = props
     const {posts, newPostText, dispatch} = props
+
+    const addNewPost = () => {
+        dispatch(addPostAC())
+    }
+
+    const onChangeTextHandler = (text: string) => {
+        dispatch(updateNewPostTextAC(text))
+    }
+
 
     let postElements = posts.map(el => {
         return (
@@ -32,11 +41,10 @@ const Posts = (props: PostsPropsType) => {
 
     return (
         <section className={style.post_wrapper}>
-            <NewPost
-                // addPost={dispatch} //del
+            <TextArea
                 newPostText={newPostText}
-                // updateNewPostText={dispatch} //del
-                dispatch={dispatch}
+                onChangeText={onChangeTextHandler}
+                onClickCallback={addNewPost}
             />
             { postElements }
         </section>
