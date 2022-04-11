@@ -3,7 +3,7 @@ import style from './Posts.module.css';
 import Post from "./Post/Post";
 import TextArea from "../../TextArea/TextArea";
 import {ActionsTypes, PostType} from "../../../redux/state";
-import {addPostAC, updateNewPostTextAC} from "../../../redux/profile-redicer";
+import {addPostAC, updateNewPostTextAC} from "../../../redux/profile-reducer";
 
 
 type PostsPropsType = {

@@ -3,11 +3,46 @@ import {v1} from "uuid";
 
 const SEND_MESSAGE = 'SEND-MESSAGE'
 const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
+const initialState = {
+    data: [
+        {
+            id: v1(),
+            name: 'Piter Parker',
+            avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaNUr6_D1h11lM3KnJ_CgXxwoGF7mU7fIvxA&usqp=CAU\''
+        },
+        {
+            id: v1(),
+            name: 'Bruce Wayne',
+            avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaNUr6_D1h11lM3KnJ_CgXxwoGF7mU7fIvxA&usqp=CAU\''
+        },
+        {
+            id: v1(),
+            name: 'Clark Kent',
+            avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaNUr6_D1h11lM3KnJ_CgXxwoGF7mU7fIvxA&usqp=CAU\''
+        }
+    ],
+    messages: [
+        {
+            id: v1(),
+            name: 'Piter Parker',
+            avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaNUr6_D1h11lM3KnJ_CgXxwoGF7mU7fIvxA&usqp=CAU\'',
+            message: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+        },
+        {
+            id: v1(),
+            name: 'Bruce Wayne',
+            avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaNUr6_D1h11lM3KnJ_CgXxwoGF7mU7fIvxA&usqp=CAU\'',
+            message: 'Hello everyone!!!'
+        }
+    ],
+    newMessageText: ''
+}
+
 //
 // type DialogsReducerType = ReturnType<typeof SendNewMessageAC>
 //     | ReturnType<typeof updateNewMessageTextAC>
 
-const dialogsReducer = (state: DialogsPageType, action: ActionsTypes) => {
+const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTypes) => {
 
     switch (action.type) {
         case SEND_MESSAGE:

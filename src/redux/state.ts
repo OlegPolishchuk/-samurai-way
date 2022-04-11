@@ -1,6 +1,6 @@
 // id
 import {v1} from "uuid";
-import profileRedicer, {addPostAC, updateNewPostTextAC} from "./profile-redicer";
+import profileRedicer, {addPostAC, updateNewPostTextAC} from "./profile-reducer";
 import dialogsReducer, {SendNewMessageAC, updateNewMessageTextAC} from "./dialogs-reducer";
 
 /// DialogsPage types
@@ -36,7 +36,7 @@ export type ProfilePageType = {
 }
 //////////////////////////
 // Sidebar type
-type SidebarType = {}
+export type SidebarType = {}
 //////////////////////////
 // RootState type
 export type RootStateType = {
@@ -132,8 +132,8 @@ export const store: StoreType = {
     _renderTree() { // callSubscriber()
         console.log('renderTree')
     },
-    subscribe(callback: () => void) {
-        this._renderTree = callback
+    subscribe(observer: () => void) {
+        this._renderTree = observer
     },
     getState() {
         return this._state
