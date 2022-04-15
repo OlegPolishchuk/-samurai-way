@@ -25,8 +25,9 @@ const App: React.FC<AppPropsType> = (props) => {
                 <div className={'wrapper'}>
                     <Navbar/>
                     <Main
-                        profilePage={state.profilePage}
-                        dialogsPage={state.dialogsPage}
+                        store={state}
+                        // profilePage={state.profilePage}
+                        // dialogsPage={state.dialogsPage}
                         // addPost={props.store.addPost.bind(props.store)}
                         // updateNewPostText={props.store.updateNewPostText.bind(props.store)}
                         dispatch={props.dispatch.bind(props.store)}

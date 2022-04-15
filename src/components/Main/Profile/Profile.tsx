@@ -3,18 +3,25 @@ import style from './Profile.module.css';
 import ProfilePhoto from "./ProfilePhoto/ProfilePhoto";
 import Posts from "../Posts/Posts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import {ActionsTypes, ProfilePageType} from "../../../redux/state";
+// import {ActionsTypes, ProfilePageType, StoreType} from "../../../redux/state";
+import PostsContainer from "../Posts/Post/PostsContainer";
+import {RootStateType} from "../../../redux/redux-store";
 
-type ProfilePagePropsType = ProfilePageType & {
-    // addPost: () => void
-    // updateNewPostText: (newText: string) => void
-    dispatch: (action: ActionsTypes) => void
+// type ProfilePagePropsType = ProfilePageType & {
+//     // addPost: () => void
+//     // updateNewPostText: (newText: string) => void
+//     store: RootStateType
+//     // dispatch: (action: ActionsTypes) => void
+// }
+type ProfilePagePropsType = {
+    store: RootStateType
 }
 
 const Profile = (props:ProfilePagePropsType) => {
 
     // const {posts, newPostText, updateNewPostText} = props // del
-    const {posts, newPostText, dispatch} = props
+    // const {posts, newPostText, dispatch} = props
+    const {store} = props
 
     return (
         <>
@@ -22,12 +29,8 @@ const Profile = (props:ProfilePagePropsType) => {
                 <ProfilePhoto/>
                 <ProfileInfo/>
             </div>
-            <Posts
-                posts={posts}
-                // addPost={props.dispatch}
-                newPostText={newPostText}
-                // updateNewPostText={dispatch}
-                dispatch={dispatch}
+            <PostsContainer
+              store={store}
             />
         </>
     );

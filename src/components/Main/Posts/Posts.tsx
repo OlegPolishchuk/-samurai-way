@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import style from './Posts.module.css';
 import Post from "./Post/Post";
 import TextArea from "../../TextArea/TextArea";
@@ -8,22 +8,34 @@ import {addPostAC, updateNewPostTextAC} from "../../../redux/profile-reducer";
 
 type PostsPropsType = {
     posts: Array<PostType>
-    // addPost: ()=> void
+    addPost: ()=> void
     newPostText: string
-    // updateNewPostText: (newText: string) => void
-    dispatch: (action: ActionsTypes) => void
+    updateNewPostText: (newText: string) => void
+    // dispatch: (action: ActionsTypes) => void
 }
 
 const Posts = (props: PostsPropsType) => {
     // const {posts, newPostText, updateNewPostText} = props
-    const {posts, newPostText, dispatch} = props
+    const {
+        posts,
+        newPostText,
+        // dispatch,
+        addPost,
+        updateNewPostText,
+    } = props
 
     const addNewPost = () => {
-        dispatch(addPostAC())
+        addPost()
+        // dispatch(addPostAC())
     }
 
+    // const onChangeTextHandler = (text: string) => {
+    //     updateNewPostText()
+    //     // dispatch(updateNewPostTextAC(text))
+    // }
     const onChangeTextHandler = (text: string) => {
-        dispatch(updateNewPostTextAC(text))
+        updateNewPostText(text)
+        // dispatch(updateNewPostTextAC(text))
     }
 
 
