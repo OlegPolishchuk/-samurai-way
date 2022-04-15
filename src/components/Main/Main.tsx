@@ -29,7 +29,7 @@ const Main = (props: PropsType) => {
                 render={() => <Profile
                     // newPostText={profilePage.newPostText}
                     // posts={profilePage.posts}
-                    // dispatch={props.dispatch}
+                    dispatch={props.dispatch}
                     store={props.store}
                 />}/>
             <Route

@@ -6,15 +6,17 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 // import {ActionsTypes, ProfilePageType, StoreType} from "../../../redux/state";
 import PostsContainer from "../Posts/Post/PostsContainer";
 import {RootStateType} from "../../../redux/redux-store";
+import {ActionsTypes} from "../../../redux/state";
 
 // type ProfilePagePropsType = ProfilePageType & {
 //     // addPost: () => void
 //     // updateNewPostText: (newText: string) => void
 //     store: RootStateType
-//     // dispatch: (action: ActionsTypes) => void
+    // dispatch: (action: ActionsTypes) => void
 // }
 type ProfilePagePropsType = {
     store: RootStateType
+    dispatch: (action: ActionsTypes) => void
 }
 
 const Profile = (props:ProfilePagePropsType) => {
@@ -31,6 +33,7 @@ const Profile = (props:ProfilePagePropsType) => {
             </div>
             <PostsContainer
               store={store}
+              dispatch={props.dispatch}
             />
         </>
     );

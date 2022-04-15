@@ -3,10 +3,10 @@ import style from './Posts.module.css';
 // import Post from "./Post/Post";
 // import TextArea from "../../TextArea/TextArea";
 // import {ActionsTypes, PostType} from "../../../redux/state";
-// import {addPostAC, updateNewPostTextAC} from "../../../redux/profile-reducer";
 import Posts from "../Posts";
 import {RootStateType} from "../../../../redux/redux-store";
 import {ActionsTypes} from "../../../../redux/state";
+import {addPostAC, updateNewPostTextAC} from "../../../../redux/profile-reducer";
 
 
 type PostsPropsType = {
@@ -14,7 +14,7 @@ type PostsPropsType = {
     // addPost: ()=> void
     // newPostText: string
     // updateNewPostText: (newText: string) => void
-    // dispatch: (action: ActionsTypes) => void
+    dispatch: (action: ActionsTypes) => void
     store: RootStateType
 }
 
@@ -23,7 +23,7 @@ const PostsContainer = (props: PostsPropsType) => {
     const {
         // posts,
         // newPostText,
-        // dispatch,
+        dispatch,
         store
     } = props
 
@@ -31,7 +31,7 @@ const PostsContainer = (props: PostsPropsType) => {
     const posts = store.profilePage.posts
 
     const addNewPost = () => {
-        // dispatch(addPostAC())
+        dispatch(addPostAC())
     }
 
 
@@ -40,7 +40,7 @@ const PostsContainer = (props: PostsPropsType) => {
     //     // dispatch(updateNewPostTextAC(text))
     // }
     const onChangeTextHandler = (text: string) => {
-        // dispatch(updateNewPostTextAC(text))
+        dispatch(updateNewPostTextAC(text))
     }
 
 
