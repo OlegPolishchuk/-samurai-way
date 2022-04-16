@@ -2,26 +2,26 @@ import React from 'react';
 import style from './Dialogs.module.css';
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
-import {ActionsTypes, DialogsPageType} from "../../redux/state";
 import TextArea from "../TextArea/TextArea";
-import {SendNewMessageAC, updateNewMessageTextAC} from "../../redux/dialogs-reducer";
+import {DialogsPageType} from "../../redux/state";
 
 type DialogsPagePropsType = {
     dialogsPage: DialogsPageType
-    newMessageText: string
-    dispatch: (action: ActionsTypes) => void
+    addMessage: () => void
+    updateMessageText: (text: string) => void
 }
 
 const Dialogs = (props: DialogsPagePropsType) => {
     // дестркутуризация пропсов
     const {data, messages, newMessageText} = props.dialogsPage;
+    const {addMessage, updateMessageText} = props
 
     const onChangeTextHandler = (text: string) => {
-        props.dispatch(updateNewMessageTextAC(text))
+        updateMessageText(text)
     }
 
     const addMessageHandler = () => {
-        props.dispatch(SendNewMessageAC())
+        addMessage()
     }
 
     let dialogList = data.map(el =>  <DialogItem key={el.id} name={el.name} avatar={el.avatar} id={el.id}/>);

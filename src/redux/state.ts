@@ -1,7 +1,7 @@
 // id
 import {v1} from "uuid";
-import profileRedicer, {addPostAC, updateNewPostTextAC} from "./profile-reducer";
-import dialogsReducer, {SendNewMessageAC, updateNewMessageTextAC} from "./dialogs-reducer";
+import profileReducer, {addPostAC, updateNewPostTextAC} from "./profile-reducer";
+import dialogsReducer, {sendNewMessageAC, updateNewMessageTextAC} from "./dialogs-reducer";
 
 /// DialogsPage types
 export type DataType = {
@@ -50,7 +50,7 @@ export type RootStateType = {
 //что бы было удобней типизировать action в компонентах, обьеденим все типы в один:
 export type ActionsTypes = ReturnType<typeof addPostAC>
     | ReturnType<typeof updateNewPostTextAC>
-    | ReturnType<typeof SendNewMessageAC>
+    | ReturnType<typeof sendNewMessageAC>
     | ReturnType<typeof updateNewMessageTextAC>
 
 /////////////////////////
@@ -142,7 +142,7 @@ export const store: StoreType = {
         // action = это всегда объект,который описывает действие { type: 'ADD-POST' }, { type: 'UPDATE POST' }
         // другие даныне по необходимости
         // отдаем логику по изменению стейта to reducer
-        this._state.profilePage = profileRedicer(this._state.profilePage, action)
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
         this._renderTree()
     }

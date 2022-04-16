@@ -59,7 +59,6 @@ const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTy
             break;
 
         case UPDATE_NEW_MESSAGE_TEXT:
-            debugger
             state.newMessageText = action.newText
             break;
 
@@ -71,7 +70,7 @@ const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTy
 
 export default dialogsReducer
 
-export const SendNewMessageAC = () => {
+export const sendNewMessageAC = () => {
     return {
         type: 'SEND-MESSAGE'
     } as const

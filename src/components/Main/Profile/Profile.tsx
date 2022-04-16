@@ -1,29 +1,12 @@
 import React from 'react';
 import style from './Profile.module.css';
 import ProfilePhoto from "./ProfilePhoto/ProfilePhoto";
-import Posts from "../Posts/Posts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-// import {ActionsTypes, ProfilePageType, StoreType} from "../../../redux/state";
 import PostsContainer from "../Posts/Post/PostsContainer";
-import {RootStateType} from "../../../redux/redux-store";
-import {ActionsTypes} from "../../../redux/state";
 
-// type ProfilePagePropsType = ProfilePageType & {
-//     // addPost: () => void
-//     // updateNewPostText: (newText: string) => void
-//     store: RootStateType
-    // dispatch: (action: ActionsTypes) => void
-// }
-type ProfilePagePropsType = {
-    store: RootStateType
-    dispatch: (action: ActionsTypes) => void
-}
+type ProfilePagePropsType = {}
 
-const Profile = (props:ProfilePagePropsType) => {
-
-    // const {posts, newPostText, updateNewPostText} = props // del
-    // const {posts, newPostText, dispatch} = props
-    const {store} = props
+const Profile = (props: ProfilePagePropsType) => {
 
     return (
         <>
@@ -31,10 +14,7 @@ const Profile = (props:ProfilePagePropsType) => {
                 <ProfilePhoto/>
                 <ProfileInfo/>
             </div>
-            <PostsContainer
-              store={store}
-              dispatch={props.dispatch}
-            />
+            <PostsContainer/>
         </>
     );
 };
