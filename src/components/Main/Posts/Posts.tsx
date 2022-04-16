@@ -1,9 +1,9 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import style from './Posts.module.css';
 import Post from "./Post/Post";
 import TextArea from "../../TextArea/TextArea";
-import {ActionsTypes, PostType} from "../../../redux/state";
-import {addPostAC, updateNewPostTextAC} from "../../../redux/profile-reducer";
+import {PostType} from "../../../redux/state";
+
 
 
 type PostsPropsType = {

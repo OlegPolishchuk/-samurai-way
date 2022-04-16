@@ -54,18 +54,17 @@ const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTy
             }
             // Проверка
             console.log(newMessage)
-            state.messages.push(newMessage)
-            state.newMessageText = ''
-            break;
+            // state.messages.push(newMessage)
+            // state.newMessageText = ''
+            return {...state, messages: [...state.messages, newMessage], newMessageText: ''}
 
         case UPDATE_NEW_MESSAGE_TEXT:
-            state.newMessageText = action.newText
-            break;
+            // state.newMessageText = action.newText
+            return {...state, newMessageText: action.newText}
 
         default:
             return state
     }
-    return state
 }
 
 export default dialogsReducer

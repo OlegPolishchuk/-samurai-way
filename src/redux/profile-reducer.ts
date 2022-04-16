@@ -47,20 +47,17 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsTy
                 photo: ''
             }
             console.log(newPost)
-            state.posts.unshift(newPost)
-            state.newPostText = ''
-            break;
+            // state.posts.unshift(newPost)
+            // state.newPostText = ''
+            return {...state, posts: [newPost, ...state.posts], newPostText: ''}
 
         case UPDATE_NEW_POST_TEXT:
-            state.newPostText = action.newText
-            break;
+            // state.newPostText = action.newText
+            return {...state, newPostText: action.newText}
 
         default:
             return state
     }
-
-    return state
-
 }
 
 export default profileReducer
