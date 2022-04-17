@@ -4,25 +4,25 @@ import profileReducer, {addPostAC, updateNewPostTextAC} from "./profile-reducer"
 import dialogsReducer, {sendNewMessageAC, updateNewMessageTextAC} from "./dialogs-reducer";
 
 /// DialogsPage types
-export type DataType = {
+type DataType = {
     id: string
     name: string
     avatar: string
 }
-export type MessageType = {
+type MessageType = {
     id: string
     name: string
     avatar: string
     message: string
 }
-export type DialogsPageType = {
+type DialogsPageType = {
     data: Array<DataType>
     messages: Array<MessageType>
     newMessageText: string
 }
 ///////////////////////////
 // Profile page types
-export type PostType = {
+type PostType = {
     id: string
     userName: string
     photo: string
@@ -30,16 +30,16 @@ export type PostType = {
     date: string
     likeCount: number
 }
-export type ProfilePageType = {
+type ProfilePageType = {
     posts: Array<PostType>
     newPostText: string
 }
 //////////////////////////
 // Sidebar type
-export type SidebarType = {}
+type SidebarType = {}
 //////////////////////////
 // RootState type
-export type RootStateType = {
+type RootStateType = {
     dialogsPage: DialogsPageType
     profilePage: ProfilePageType
     sidebar: SidebarType
@@ -48,7 +48,7 @@ export type RootStateType = {
 //////////////////////////
 // dispatch methods types
 //что бы было удобней типизировать action в компонентах, обьеденим все типы в один:
-export type ActionsTypes = ReturnType<typeof addPostAC>
+type ActionsTypes = ReturnType<typeof addPostAC>
     | ReturnType<typeof updateNewPostTextAC>
     | ReturnType<typeof sendNewMessageAC>
     | ReturnType<typeof updateNewMessageTextAC>
@@ -57,7 +57,7 @@ export type ActionsTypes = ReturnType<typeof addPostAC>
 
 /////////////////////////
 // State
-export type StoreType = {
+type StoreType = {
     _state: RootStateType
     _renderTree: () => void
     subscribe: (callback: () => void) => void
@@ -65,7 +65,7 @@ export type StoreType = {
     dispatch: (action: ActionsTypes) => void
 }
 
-export const store: StoreType = {
+const store: StoreType = {
     _state: {
         dialogsPage: {
             data: [
@@ -142,8 +142,11 @@ export const store: StoreType = {
         // action = это всегда объект,который описывает действие { type: 'ADD-POST' }, { type: 'UPDATE POST' }
         // другие даныне по необходимости
         // отдаем логику по изменению стейта to reducer
-        this._state.profilePage = profileReducer(this._state.profilePage, action)
-        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        // так как мы подключили react-redux, создали reducers и протипизировали их
+        // в отдельном файле, данные state.ts нам больше не нужен
+        //
+        // this._state.profilePage = profileReducer(this._state.profilePage, action)
+        // this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
         this._renderTree()
     }
 

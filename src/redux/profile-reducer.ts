@@ -1,5 +1,13 @@
-import {ActionsTypes, PostType, ProfilePageType} from "./state";
 import {v1} from "uuid";
+
+export type PostType = {
+    id: string
+    userName: string
+    photo: string
+    post: string
+    date: string
+    likeCount: number
+}
 
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
@@ -27,14 +35,16 @@ const initialState = {
             date: new Date().toISOString(),
             likeCount: 0
         }
-    ],
+    ] as Array<PostType>,
     newPostText: '',
 }
 
-// type ProfileReducerType = ReturnType<typeof addPostAC>
-//     | ReturnType<typeof updateNewPostTextAC>
+export type InitialStateType = typeof initialState
 
-const profileReducer = (state: ProfilePageType = initialState, action: ActionsTypes) => {
+export type ActionsTypes = ReturnType<typeof addPostAC>
+    | ReturnType<typeof updateNewPostTextAC>
+
+const profileReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
 
     switch (action.type) {
         case ADD_POST:
@@ -47,12 +57,9 @@ const profileReducer = (state: ProfilePageType = initialState, action: ActionsTy
                 photo: ''
             }
             console.log(newPost)
-            // state.posts.unshift(newPost)
-            // state.newPostText = ''
             return {...state, posts: [newPost, ...state.posts], newPostText: ''}
 
         case UPDATE_NEW_POST_TEXT:
-            // state.newPostText = action.newText
             return {...state, newPostText: action.newText}
 
         default:

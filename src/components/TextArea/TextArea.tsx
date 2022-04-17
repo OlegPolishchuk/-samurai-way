@@ -1,4 +1,4 @@
-import React, {ButtonHTMLAttributes, ChangeEvent, DetailedHTMLProps, TextareaHTMLAttributes,KeyboardEvent, useState} from 'react';
+import React, {ButtonHTMLAttributes, ChangeEvent, DetailedHTMLProps, TextareaHTMLAttributes, useState} from 'react';
 import s from './TextArea.module.css';
 
 type DefaultTextAreaPropsType = DetailedHTMLProps<TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement>
@@ -45,16 +45,6 @@ const TextArea: React.FC<TextAreaPropsType> = (props) => {
             setErrorMsg('')
         }
     }
-
-    // const onKeyPressHandler = (e: KeyboardEvent<HTMLTextAreaElement>) => {
-    //     // need to fix it
-    //     // onKeyPress && onKeyPress(e)
-    //     // onEnter && e.key === 'Enter' && onEnter()
-    //     if (e.key === 'Enter') {
-    //         console.log('')
-    //         onClickBtnHandler()
-    //     }
-    // }
 
     const onChangeTextareaHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setErrorMsg('')

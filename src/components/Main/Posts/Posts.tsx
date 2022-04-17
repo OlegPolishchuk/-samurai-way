@@ -2,16 +2,8 @@ import React from 'react';
 import style from './Posts.module.css';
 import Post from "./Post/Post";
 import TextArea from "../../TextArea/TextArea";
-import {PostType} from "../../../redux/state";
+import {PostsPropsType} from "./Post/PostsContainer";
 
-
-
-type PostsPropsType = {
-    posts: Array<PostType>
-    addPost: ()=> void
-    newPostText: string
-    updateNewPostText: (newText: string) => void
-}
 
 const Posts = (props: PostsPropsType) => {
     const {

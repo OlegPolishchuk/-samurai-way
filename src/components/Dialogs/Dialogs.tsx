@@ -3,15 +3,10 @@ import style from './Dialogs.module.css';
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 import TextArea from "../TextArea/TextArea";
-import {DialogsPageType} from "../../redux/state";
+import {DialogsPropsType} from "./DialogsContainer";
 
-type DialogsPagePropsType = {
-    dialogsPage: DialogsPageType
-    addMessage: () => void
-    updateMessageText: (text: string) => void
-}
 
-const Dialogs = (props: DialogsPagePropsType) => {
+const Dialogs = (props: DialogsPropsType) => {
     // дестркутуризация пропсов
     const {data, messages, newMessageText} = props.dialogsPage;
     const {addMessage, updateMessageText} = props

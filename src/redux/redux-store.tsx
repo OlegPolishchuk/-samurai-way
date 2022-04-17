@@ -4,13 +4,13 @@ import dialogsReducer from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
 
 
-const reducers = combineReducers({
+const rootReducer = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     sidebar: sidebarReducer
 })
 
-export const store = createStore(reducers)
+export const store = createStore(rootReducer)
 
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

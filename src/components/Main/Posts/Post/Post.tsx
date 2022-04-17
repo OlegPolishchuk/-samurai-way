@@ -1,7 +1,8 @@
 import React from 'react';
 import style from "./Post.module.css";
 import Like from "../../Like/Like";
-import {PostType} from "../../../../redux/state";
+import {PostType} from "../../../../redux/profile-reducer";
+
 
 
 

@@ -1,5 +1,17 @@
-import {ActionsTypes, DialogsPageType, MessageType} from "./state";
 import {v1} from "uuid";
+
+export type DataType = {
+    id: string
+    name: string
+    avatar: string
+}
+export type MessageType = {
+    id: string
+    name: string
+    avatar: string
+    message: string
+}
+
 
 const SEND_MESSAGE = 'SEND-MESSAGE'
 const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
@@ -20,7 +32,7 @@ const initialState = {
             name: 'Clark Kent',
             avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaNUr6_D1h11lM3KnJ_CgXxwoGF7mU7fIvxA&usqp=CAU\''
         }
-    ],
+    ] as Array<DataType>,
     messages: [
         {
             id: v1(),
@@ -34,15 +46,15 @@ const initialState = {
             avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaNUr6_D1h11lM3KnJ_CgXxwoGF7mU7fIvxA&usqp=CAU\'',
             message: 'Hello everyone!!!'
         }
-    ],
+    ] as Array<MessageType>,
     newMessageText: ''
 }
 
-//
-// type DialogsReducerType = ReturnType<typeof SendNewMessageAC>
-//     | ReturnType<typeof updateNewMessageTextAC>
+export type InitialStateType = typeof initialState
 
-const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTypes) => {
+export type ActionsTypes = ReturnType<typeof sendNewMessageAC> | ReturnType<typeof updateNewMessageTextAC>
+
+const dialogsReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
 
     switch (action.type) {
         case SEND_MESSAGE:
@@ -54,12 +66,9 @@ const dialogsReducer = (state: DialogsPageType = initialState, action: ActionsTy
             }
             // Проверка
             console.log(newMessage)
-            // state.messages.push(newMessage)
-            // state.newMessageText = ''
             return {...state, messages: [...state.messages, newMessage], newMessageText: ''}
 
         case UPDATE_NEW_MESSAGE_TEXT:
-            // state.newMessageText = action.newText
             return {...state, newMessageText: action.newText}
 
         default:
