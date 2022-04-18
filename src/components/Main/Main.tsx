@@ -3,7 +3,7 @@ import style from './Main.module.css';
 import Profile from "./Profile/Profile";
 import {Route} from "react-router-dom";
 import DialogsContainer from "../Dialogs/DialogsContainer";
-import Users from "../Users/Users";
+import UsersContainer from "../Users/UsersContainer";
 
 
 type PropsType = {
@@ -24,7 +24,7 @@ const Main = (props: PropsType) => {
             />
             <Route
                 path={'/users'}
-                render={() => <Users />}
+                render={() => <UsersContainer />}
             />
         </main>
     );

@@ -1,6 +1,7 @@
 import React from 'react';
+import {UsersPropsType} from "./UsersContainer";
 
-const Users: React.FC = (props) => {
+const Users: React.FC<UsersPropsType> = (props) => {
     return (
         <div>
             Users will be here
