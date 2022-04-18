@@ -58,9 +58,10 @@ const dialogsReducer = (state: InitialStateType = initialState, action: ActionsT
 
     switch (action.type) {
         case SEND_MESSAGE:
+            //need to update!! name, avatar
             const newMessage: MessageType = {
                 id: v1(),
-                name: 'Oleg', //need to update!!
+                name: 'Oleg',
                 avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaNUr6_D1h11lM3KnJ_CgXxwoGF7mU7fIvxA&usqp=CAU\'',
                 message: state.newMessageText
             }
@@ -69,7 +70,7 @@ const dialogsReducer = (state: InitialStateType = initialState, action: ActionsT
             return {...state, messages: [...state.messages, newMessage], newMessageText: ''}
 
         case UPDATE_NEW_MESSAGE_TEXT:
-            return {...state, newMessageText: action.newText}
+            return {...state, newMessageText: action.payload.newText}
 
         default:
             return state
@@ -77,6 +78,8 @@ const dialogsReducer = (state: InitialStateType = initialState, action: ActionsT
 }
 
 export default dialogsReducer
+
+// Actions:
 
 export const sendNewMessageAC = () => {
     return {
@@ -87,6 +90,8 @@ export const sendNewMessageAC = () => {
 export const updateNewMessageTextAC = (newText: string) => {
     return {
         type: 'UPDATE-NEW-MESSAGE-TEXT',
-        newText
+        payload: {
+            newText
+        }
     } as const
 }

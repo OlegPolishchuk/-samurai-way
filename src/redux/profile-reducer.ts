@@ -60,7 +60,7 @@ const profileReducer = (state: InitialStateType = initialState, action: ActionsT
             return {...state, posts: [newPost, ...state.posts], newPostText: ''}
 
         case UPDATE_NEW_POST_TEXT:
-            return {...state, newPostText: action.newText}
+            return {...state, newPostText: action.payload.newText}
 
         default:
             return state
@@ -80,6 +80,8 @@ export const addPostAC = () => {
 export const updateNewPostTextAC = (newText: string) => {
     return {
         type: "UPDATE-NEW-POST-TEXT",
-        newText
+        payload: {
+            newText
+        }
     } as const
 }
