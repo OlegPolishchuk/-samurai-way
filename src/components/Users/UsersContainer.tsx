@@ -4,7 +4,7 @@ import {AppDispatchType, RootStateType} from "../../redux/redux-store";
 import {followAC, InitialStateType, setUsersAC, unFollowAC, UserType} from "../../redux/users-reducer";
 
 type MapStateToPropsType = {
-    users: InitialStateType
+    usersPage: InitialStateType
 }
 
 type MapDispatchToPropsType = {
@@ -15,7 +15,7 @@ type MapDispatchToPropsType = {
 
 const mapStateToProps = (state: RootStateType): MapStateToPropsType => {
     return {
-        users: state.users
+        usersPage: state.usersPage
     }
 }
 

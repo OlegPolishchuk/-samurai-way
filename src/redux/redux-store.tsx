@@ -9,7 +9,7 @@ const rootReducer = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     sidebar: sidebarReducer,
-    users: usersReducer
+    usersPage: usersReducer
 })
 
 export const store = createStore(rootReducer)
