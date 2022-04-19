@@ -59,3 +59,14 @@
     align-self: center;
     max-height: 40px;
 }
+
+.btn_unfollow {
+    border: 1px solid #ff5050;
+
+    color: #ff5050;
+    background: #fff;
+}
+
+.btn_unfollow:hover {
+    background: #fff3f3;
+}
