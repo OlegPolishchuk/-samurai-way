@@ -2,18 +2,18 @@ import {v1} from "uuid";
 
 export type UserType = {
     id: string
-    fullName: string
+    name: string
     status: string
     followed: boolean
-    location: {city: string, country: string}
+    uniqueUrlName?: null
+    photos: {
+        small: string | null,
+        large: string | null
+    }
 }
 
 const initialState = {
-    users: [
-        {id: v1(),  fullName: 'Dmity', status: '', location: {city: 'Minsk', country: 'Belarus'}, followed: false },
-        {id: v1(),  fullName: 'Sasha', status: 'Im a boss', location: {city: 'Moscow', country: 'Russia'}, followed: true },
-        {id: v1(),  fullName: 'Alex', status: 'Someone probably was here', location: {city: 'Kiev', country: 'Ukraine'}, followed: true }
-    ] as Array<UserType>
+    users: [] as Array<UserType>
 }
 
 export type InitialStateType = typeof initialState
@@ -25,12 +25,12 @@ const usersReducer = (state: InitialStateType = initialState, action: ActionType
         case 'FOLLOW':
             return {
                 ...state,
-                users: state.users.map(el => el.id === action.payload.userId ? {...el, followed: true}: el)
+                users: state.users.map(el => el.id === action.payload.userId ? {...el, followed: true} : el)
             }
         case 'UNFOLLOW':
             return {
                 ...state,
-                users: state.users.map(el => el.id === action.payload.userId ? {...el, followed: false}: el)
+                users: state.users.map(el => el.id === action.payload.userId ? {...el, followed: false} : el)
             }
         case 'SET-USERS':
             return {...state, users: [...state.users, ...action.payload.users]}
