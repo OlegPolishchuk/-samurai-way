@@ -2,18 +2,24 @@ import {v1} from "uuid";
 
 export type UserType = {
     id: string
-    fullName: string
+    name: string
     status: string
     followed: boolean
-    location: {city: string, country: string}
+    photos: {
+        small: string | null
+        large: string |null
+    }
+    uniqueUrlName?: string | null
+    // location: {city: string, country: string}
 }
 
 const initialState = {
-    users: [
-        {id: v1(),  fullName: 'Dmity', status: '', location: {city: 'Minsk', country: 'Belarus'}, followed: false },
-        {id: v1(),  fullName: 'Sasha', status: 'Im a boss', location: {city: 'Moscow', country: 'Russia'}, followed: true },
-        {id: v1(),  fullName: 'Alex', status: 'Someone probably was here', location: {city: 'Kiev', country: 'Ukraine'}, followed: true }
-    ] as Array<UserType>
+    // users: [
+    //     {id: v1(),  fullName: 'Dmity', status: '', location: {city: 'Minsk', country: 'Belarus'}, followed: false },
+    //     {id: v1(),  fullName: 'Sasha', status: 'Im a boss', location: {city: 'Moscow', country: 'Russia'}, followed: true },
+    //     {id: v1(),  fullName: 'Alex', status: 'Someone probably was here', location: {city: 'Kiev', country: 'Ukraine'}, followed: true }
+    // ] as Array<UserType>
+    users: [] as Array<UserType>
 }
 
 export type InitialStateType = typeof initialState

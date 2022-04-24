@@ -1,13 +1,14 @@
 import {v1} from "uuid";
 import usersReducer, {followAC, setUsersAC, unFollowAC, UserType} from "../../redux/users-reducer";
+import Users from "./Users";
 
 
 
 const initialState = {
     users: [
-        {id: v1(),  fullName: 'Dmity', status: '', location: {city: 'Minsk', country: 'Belarus'}, followed: false },
-        {id: v1(),  fullName: 'Sasha', status: 'Im a boss', location: {city: 'Moscow', country: 'Russia'}, followed: true },
-        {id: v1(),  fullName: 'Alex', status: 'Someone probably was here', location: {city: 'Kiev', country: 'Ukraine'}, followed: true }
+        {id: v1(),  name: 'Dmity', status: '', followed: false },
+        {id: v1(),  name: 'Sasha', status: 'Im a boss', followed: true },
+        {id: v1(),  name: 'Alex', status: 'Someone probably was here', followed: true }
     ] as Array<UserType>
 }
 
@@ -42,9 +43,9 @@ test('Case UNFOLLOW should set in InitialState property "followed" to false ', (
 
 test('Case SET-USERS should concat users with newUsers', () => {
 
-    const newUsers = [
-        {id: v1(),  fullName: 'Oleg', status: 'Im a boss', location: {city: 'Minsk', country: 'Belarus'}, followed: true },
-        {id: v1(),  fullName: 'Superman', status: 'Superman', location: {city: 'NY', country: 'USA'}, followed: true }
+    const newUsers: UserType[] = [
+        {id: v1(),  name: 'Oleg', status: 'Im a boss', followed: true, photos: {small: '', large: ''}  },
+        {id: v1(),  name: 'Superman', status: 'Superman', followed: true, photos: {small: '', large: ''} }
     ]
 
     const endState = usersReducer(initialState, setUsersAC(newUsers))
