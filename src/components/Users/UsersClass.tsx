@@ -2,21 +2,21 @@ import React from "react";
 import {UsersPropsType} from "./UsersContainer";
 import s from "./Users.module.css";
 import axios from "axios";
-// import userPhoto from "../../assets/img/userPhoto.png"
 
 const userPhoto = require("../../assets/img/userPhoto.png" )
 
 class UsersClass extends React.Component<UsersPropsType> {
-    // ничего, кроме наследования нет, то эту чать можно не писать
+
     constructor(props: UsersPropsType) {
         super(props);
     }
 
     componentDidMount() {
         axios
-            .get('https://social-network.samuraijs.com/api/1.0/users')
+            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.usersPage.currentPage}&count=${this.props.usersPage.pageSize}`)
             .then(res => {
                 this.props.setUsers(res.data.items)
+                this.props.setTotalCount(res.data.totalCount)
             })
     }
 
@@ -26,10 +26,39 @@ class UsersClass extends React.Component<UsersPropsType> {
     onUnFollowHandler = (userId: string) => {
         this.props.unFollow(userId)
     }
+    onPageChanged = (pageNumber: number) => {
+        this.props.setCurrentPage(pageNumber)
+
+        axios
+            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.usersPage.pageSize}`)
+            .then(res => {
+                this.props.setUsers(res.data.items)
+            })
+    }
 
     render() {
+
+        const pagesCount = Math.ceil(this.props.usersPage.totalCount / this.props.usersPage.pageSize)
+
+        const pages = []
+
+        for (let i = 1; i <= pagesCount; i++) {
+            pages.push(i)
+        }
+
+
         return (
             <div>
+                <div className={s.pagination}>
+                    {pages.map((el,  i) => {
+                        return(
+                            <span key={i} className={this.props.usersPage.currentPage === el ? s.selected_page : '' }
+                                  onClick={() => {this.onPageChanged(el)}}
+                            >{el}
+                            </span>
+                        )
+                    })}
+                </div>
                 {this.props.usersPage.users.map(el => {
                     return (
                         <div key={el.id} className={s.user_wrapper}>
