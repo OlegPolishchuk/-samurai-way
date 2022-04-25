@@ -1,5 +1,3 @@
-import {v1} from "uuid";
-
 export type UserType = {
     id: string
     name: string
@@ -13,7 +11,10 @@ export type UserType = {
 }
 
 const initialState = {
-    users: [] as Array<UserType>
+    users: [] as Array<UserType>,
+    totalCount: 0,
+    pageSize: 10,
+    currentPage: 1
 }
 
 export type InitialStateType = typeof initialState

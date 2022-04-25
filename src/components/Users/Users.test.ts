@@ -8,7 +8,10 @@ const initialState = {
         {id: v1(),  name: 'Dmity', status: '', followed: false },
         {id: v1(),  name: 'Sasha', status: 'Im a boss', followed: true },
         {id: v1(),  name: 'Alex', status: 'Someone probably was here', followed: true }
-    ] as Array<UserType>
+    ] as Array<UserType>,
+    totalCount: 0,
+    pageSize: 0,
+    currentPage: 0
 }
 
 test('Case FOLLOW should set in InitialState property "followed" to true', () => {
