@@ -2,23 +2,29 @@ import React, {useEffect} from 'react';
 import {UsersPropsType} from "./UsersContainer";
 import s from './Users.module.css'
 import axios from "axios";
+import {Pagination} from "../Pagination/Pagination";
 
 const Users: React.FC<UsersPropsType> = (
     {
         usersPage,
         follow,
         unFollow,
-        setUsers
+        setUsers,
+        setTotalCount,
+        setCurrentPage
     }
 ) => {
 
+    const {totalCount, pageSize, currentPage} = usersPage
+
     useEffect(() => {
         axios
-            .get('https://social-network.samuraijs.com/api/1.0/users')
+            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${pageSize}`)
             .then(res => {
                 setUsers(res.data.items)
+                setTotalCount(res.data.totalCount)
             })
-    },[])
+    },[currentPage, pageSize])
 
     const onFollowHandler = (userId: string) => {
         follow(userId)
@@ -32,6 +38,12 @@ const Users: React.FC<UsersPropsType> = (
 
     return (
         <div>
+            <Pagination
+                totalCount={totalCount}
+                currentPageNumber={currentPage}
+                pageSize={pageSize}
+                callBack={setCurrentPage}
+            />
             {usersPage.users.map(el => {
                 return (
                     <div key={el.id} className={s.user_wrapper}>

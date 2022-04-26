@@ -1,5 +1,11 @@
 .wrapper {
     font-size: 18px;
+    margin: 15px;
+}
+
+.page_item {
+    margin-right: 8px;
+    cursor: pointer;
 }
 
 .active_page {

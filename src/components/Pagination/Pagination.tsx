@@ -1,31 +1,50 @@
 import React from 'react'
 import s from './Pagination.module.css'
+import {showPages} from "../../utils/showPages";
 
 type PaginationPropsType = {
     totalCount: number
     interval?: number
     currentPageNumber: number
+    pageSize: number
+    callBack: (page: number) => void
 }
 
 export const Pagination: React.FC<PaginationPropsType> = (
     {
         totalCount,
         interval,
-        currentPageNumber
+        currentPageNumber,
+        pageSize,
+        callBack
     }
 ) => {
+    const pagesCount = Math.ceil(totalCount / pageSize)
+    const allPages = new Array(pagesCount).fill('').map((el, i) => i+1)
 
-    const pages = new Array(totalCount).map((el, i) => {
+    const onClickHandler = (pageNumber: number) => {
+        callBack(pageNumber)
+    }
+
+
+    const pages = showPages(pagesCount, currentPageNumber, allPages).map((el,i) => {
         return (
-            <span className={currentPageNumber === i ? s.active_page : ''}>
-                {i + 1}
+            <span
+                key={i}
+                className={`${s.page_item} 
+                ${currentPageNumber === el ? s.active_page : ''}`}
+                onClick={() => {onClickHandler(el)}}
+            >{el}
             </span>
         )
     })
 
+
     return (
         <div className={s.wrapper}>
-            { pages }
+            <span>
+                {pages}
+            </span>
         </div>
     )
 }
