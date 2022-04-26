@@ -27,7 +27,7 @@ export const Pagination: React.FC<PaginationPropsType> = (
     }
 
 
-    const pages = showPages(pagesCount, currentPageNumber, allPages).map((el,i) => {
+    const pages = showPages(pagesCount, currentPageNumber ).map((el,i) => {
         return (
             <span
                 key={i}
