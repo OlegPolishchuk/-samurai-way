@@ -20,20 +20,22 @@ export const Pagination: React.FC<PaginationPropsType> = (
     }
 ) => {
     const pagesCount = Math.ceil(totalCount / pageSize)
-    const allPages = new Array(pagesCount).fill('').map((el, i) => i+1)
+    const allPages = new Array(pagesCount).fill('').map((el, i) => i + 1)
 
     const onClickHandler = (pageNumber: number) => {
         callBack(pageNumber)
     }
 
 
-    const pages = showPages(pagesCount, currentPageNumber ).map((el,i) => {
+    const pages = showPages(pagesCount, currentPageNumber).map((el, i) => {
         return (
             <span
-                key={i}
                 className={`${s.page_item} 
+                key={i}
                 ${currentPageNumber === el ? s.active_page : ''}`}
-                onClick={() => {onClickHandler(el)}}
+                onClick={() => {
+                    onClickHandler(el)
+                }}
             >{el}
             </span>
         )
@@ -42,9 +44,7 @@ export const Pagination: React.FC<PaginationPropsType> = (
 
     return (
         <div className={s.wrapper}>
-            <span>
-                {pages}
-            </span>
+            {pages}
         </div>
     )
 }
