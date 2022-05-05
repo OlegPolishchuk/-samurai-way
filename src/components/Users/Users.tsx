@@ -1,30 +1,26 @@
-import React, {useEffect} from 'react';
-import {UsersPropsType} from "./UsersContainer";
+import React from 'react';
 import s from './Users.module.css'
-import axios from "axios";
 import {Pagination} from "../Pagination/Pagination";
+import {InitialStateType} from "../../redux/users-reducer";
+
+type UsersPropsType = {
+    usersPage: InitialStateType,
+    follow: (userId: string) => void,
+    unFollow: (userId: string) => void,
+    setCurrentPage: (currentPage: number) => void
+}
 
 const Users: React.FC<UsersPropsType> = (
     {
         usersPage,
         follow,
         unFollow,
-        setUsers,
-        setTotalCount,
         setCurrentPage
     }
 ) => {
 
-    const {totalCount, pageSize, currentPage} = usersPage
+    const {users, totalCount, pageSize, currentPage} = usersPage
 
-    useEffect(() => {
-        axios
-            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${pageSize}`)
-            .then(res => {
-                setUsers(res.data.items)
-                setTotalCount(res.data.totalCount)
-            })
-    },[currentPage, pageSize])
 
     const onFollowHandler = (userId: string) => {
         follow(userId)
@@ -44,14 +40,14 @@ const Users: React.FC<UsersPropsType> = (
                 pageSize={pageSize}
                 callBack={setCurrentPage}
             />
-            {usersPage.users.map(el => {
+            {users.map(el => {
                 return (
                     <div key={el.id} className={s.user_wrapper}>
                         <figure className={s.inner_wrapper}>
                             <img className={s.user_avatar} alt={'avatar'}
                                  src={el.photos.small !== null ? el.photos.small : userPhoto}/>
                             <figcaption className={s.user_description}>
-                                {/*user name*/}
+                                {/* user name */}
                                 <h3 className={s.user_name}>{el.name}</h3>
                                 <p className={s.user_status}>{el.status}</p>
                             </figcaption>

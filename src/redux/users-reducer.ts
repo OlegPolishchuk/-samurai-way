@@ -1,3 +1,11 @@
+export enum UserPageActionsTypeEnum {
+    FOLLOW = 'FOLLOW,',
+    UNFOLLOW = 'UNFOLLOW',
+    SET_USERS = 'SET_USERS',
+    SET_TOTAL_COUNT = 'SET-TOTAL-COUNT',
+    SET_CURRENT_PAGE = 'SET-CURRENT-PAGE',
+}
+
 export type UserType = {
     id: string
     name: string
@@ -18,6 +26,7 @@ const initialState = {
 }
 
 export type InitialStateType = typeof initialState
+
 export type ActionTypes = ReturnType<typeof followAC>
     | ReturnType<typeof unFollowAC>
     | ReturnType<typeof setUsersAC>
@@ -28,25 +37,25 @@ const usersReducer = (state: InitialStateType = initialState, action: ActionType
 
     switch (action.type) {
 
-        case 'FOLLOW':
+        case UserPageActionsTypeEnum.FOLLOW:
             return {
                 ...state,
                 users: state.users.map(el => el.id === action.payload.userId ? {...el, followed: true} : el)
             }
 
-        case 'UNFOLLOW':
+        case UserPageActionsTypeEnum.UNFOLLOW:
             return {
                 ...state,
                 users: state.users.map(el => el.id === action.payload.userId ? {...el, followed: false} : el)
             }
 
-        case 'SET-USERS':
+        case UserPageActionsTypeEnum.SET_USERS:
             return {...state, users: action.payload.users}
 
-        case 'SET-TOTAL-COUNT':
+        case UserPageActionsTypeEnum.SET_TOTAL_COUNT:
             return {...state, totalCount: action.payload.totalCount}
 
-        case "SET-CURRENT-PAGE":
+        case UserPageActionsTypeEnum.SET_CURRENT_PAGE:
             return {...state, currentPage: action.payload.currentPage}
 
         default:
@@ -57,7 +66,7 @@ const usersReducer = (state: InitialStateType = initialState, action: ActionType
 
 export const followAC = (userId: string) => {
     return {
-        type: 'FOLLOW',
+        type: UserPageActionsTypeEnum.FOLLOW,
         payload: {
             userId
         }
@@ -66,7 +75,7 @@ export const followAC = (userId: string) => {
 
 export const unFollowAC = (userId: string) => {
     return {
-        type: 'UNFOLLOW',
+        type: UserPageActionsTypeEnum.UNFOLLOW,
         payload: {
             userId
         }
@@ -75,7 +84,7 @@ export const unFollowAC = (userId: string) => {
 
 export const setUsersAC = (users: Array<UserType>) => {
     return {
-        type: 'SET-USERS',
+        type: UserPageActionsTypeEnum.SET_USERS,
         payload: {
             users
         }
@@ -84,7 +93,7 @@ export const setUsersAC = (users: Array<UserType>) => {
 
 export const setTotalCountAC = (totalCount: number) => {
     return {
-        type: 'SET-TOTAL-COUNT',
+        type: UserPageActionsTypeEnum.SET_TOTAL_COUNT,
         payload: {
             totalCount
         }
@@ -93,11 +102,15 @@ export const setTotalCountAC = (totalCount: number) => {
 
 export const setCurrentPageAC = (currentPage: number) => {
     return {
-        type: 'SET-CURRENT-PAGE',
+        type: UserPageActionsTypeEnum.SET_CURRENT_PAGE,
         payload: {
             currentPage
         }
     } as const
 }
+
+//thunks
+
+
 
 export default usersReducer

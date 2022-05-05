@@ -1,8 +1,9 @@
-import {combineReducers, createStore} from "redux";
+import {Action, applyMiddleware, combineReducers, createStore} from "redux";
 import profileReducer from "./profile-reducer";
 import dialogsReducer from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
 import usersReducer from "./users-reducer";
+import thunk, {ThunkDispatch} from "redux-thunk";
 
 
 const rootReducer = combineReducers({
@@ -12,11 +13,11 @@ const rootReducer = combineReducers({
     usersPage: usersReducer
 })
 
-export const store = createStore(rootReducer)
+export const store = createStore(rootReducer, applyMiddleware(thunk))
 
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
-// export type RootStateType = ReturnType<typeof store.getState>
+
 export type RootStateType = ReturnType<typeof store.getState>
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatchType = typeof store.dispatch
+
+export type AppThunk = ThunkDispatch<RootStateType, unknown, Action>
