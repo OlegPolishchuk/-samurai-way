@@ -33,7 +33,7 @@ const Users: React.FC<UsersPropsType> = (
     const userPhoto = require("../../assets/img/userPhoto.png")
 
     return (
-        <div>
+        <div className={s.container}>
             <Pagination
                 totalCount={totalCount}
                 currentPageNumber={currentPage}
@@ -69,6 +69,12 @@ const Users: React.FC<UsersPropsType> = (
                     </div>
                 )
             })}
+            <Pagination
+                totalCount={totalCount}
+                currentPageNumber={currentPage}
+                pageSize={pageSize}
+                callBack={setCurrentPage}
+            />
         </div>
     );
 };
