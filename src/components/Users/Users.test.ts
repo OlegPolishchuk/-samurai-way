@@ -11,7 +11,8 @@ const initialState = {
     ] as Array<UserType>,
     totalCount: 0,
     pageSize: 0,
-    currentPage: 0
+    currentPage: 0,
+    isFetching: false
 }
 
 test('Case FOLLOW should set in InitialState property "followed" to true', () => {

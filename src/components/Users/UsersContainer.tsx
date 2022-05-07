@@ -1,25 +1,36 @@
 import Users from "./Users";
-import {followAC, setCurrentPageAC, setTotalCountAC, setUsersAC, unFollowAC, UserType} from "../../redux/users-reducer";
+import {
+    followAC,
+    setCurrentPageAC,
+    setIsFetchingAC,
+    setTotalCountAC,
+    setUsersAC,
+    unFollowAC,
+    UserType
+} from "../../redux/users-reducer";
 import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
 import axios from "axios";
 import {useEffect} from "react";
 
 
 const UsersContainer = () => {
-
     const usersPage = useAppSelector(state => state.usersPage)
-    const {pageSize, currentPage} = usersPage
+    const {pageSize, currentPage, isFetching} = usersPage
 
     const dispatch = useAppDispatch()
 
     useEffect(() => {
+        dispatch(setIsFetchingAC(true))
         axios
             .get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${pageSize}`)
             .then(res => {
+                dispatch(setIsFetchingAC(false))
                 setUsers(res.data.items)
                 setTotalCount(res.data.totalCount)
             })
     }, [currentPage, pageSize])
+
+    const preloader = require( '../../assets/img/preloader.gif')
 
 
     const follow = (userId: string) => {
@@ -43,12 +54,17 @@ const UsersContainer = () => {
         dispatch(setCurrentPageAC(currentPage))
     }
 
-    return <Users
-        usersPage={usersPage}
-        follow={follow}
-        setCurrentPage={setCurrentPage}
-        unFollow={unFollow}
-    />
+    return (
+        <>
+            {isFetching ? <img className={'isFetching'} src={preloader} alt={'preloader'}/> : null}
+            <Users
+                usersPage={usersPage}
+                follow={follow}
+                setCurrentPage={setCurrentPage}
+                unFollow={unFollow}
+            />
+        </>
+    )
 }
 
 

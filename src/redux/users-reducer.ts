@@ -4,6 +4,7 @@ export enum UserPageActionsTypeEnum {
     SET_USERS = 'SET_USERS',
     SET_TOTAL_COUNT = 'SET-TOTAL-COUNT',
     SET_CURRENT_PAGE = 'SET-CURRENT-PAGE',
+    TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
 }
 
 export type UserType = {
@@ -22,7 +23,8 @@ const initialState = {
     users: [] as Array<UserType>,
     totalCount: 0,
     pageSize: 10,
-    currentPage: 1
+    currentPage: 1,
+    isFetching: true
 }
 
 export type InitialStateType = typeof initialState
@@ -32,6 +34,7 @@ export type ActionTypes = ReturnType<typeof followAC>
     | ReturnType<typeof setUsersAC>
     | ReturnType<typeof setTotalCountAC>
     | ReturnType<typeof setCurrentPageAC>
+    | ReturnType<typeof setIsFetchingAC>
 
 const usersReducer = (state: InitialStateType = initialState, action: ActionTypes) => {
 
@@ -57,6 +60,12 @@ const usersReducer = (state: InitialStateType = initialState, action: ActionType
 
         case UserPageActionsTypeEnum.SET_CURRENT_PAGE:
             return {...state, currentPage: action.payload.currentPage}
+
+        case UserPageActionsTypeEnum.TOGGLE_IS_FETCHING:
+            return {
+                ...state,
+                ...action.payload
+            }
 
         default:
             return state
@@ -109,8 +118,17 @@ export const setCurrentPageAC = (currentPage: number) => {
     } as const
 }
 
-//thunks
 
+export const setIsFetchingAC = (isFetching: boolean) => {
+    return {
+        type: UserPageActionsTypeEnum.TOGGLE_IS_FETCHING,
+        payload: {
+            isFetching
+        }
+    } as const
+}
+
+//thunks
 
 
 export default usersReducer
