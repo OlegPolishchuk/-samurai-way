@@ -11,6 +11,7 @@ import {
 import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
 import axios from "axios";
 import {useEffect} from "react";
+import Preloader from "../Preloader/Preloader";
 
 
 const UsersContainer = () => {
@@ -30,7 +31,7 @@ const UsersContainer = () => {
             })
     }, [currentPage, pageSize])
 
-    const preloader = require( '../../assets/img/preloader.gif')
+
 
 
     const follow = (userId: string) => {
@@ -56,7 +57,7 @@ const UsersContainer = () => {
 
     return (
         <>
-            {isFetching ? <img className={'isFetching'} src={preloader} alt={'preloader'}/> : null}
+            {isFetching && <Preloader/>}
             <Users
                 usersPage={usersPage}
                 follow={follow}
