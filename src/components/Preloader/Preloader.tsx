@@ -5,7 +5,7 @@ const Preloader: React.FC = () => {
     const preloader = require( '../../assets/img/preloader.gif')
 
     return (
-        <div>
+        <div className={s.wrapper}>
             <img className={s.isFetching} src={preloader} alt={'preloader'}/>
         </div>
     );

@@ -2,6 +2,7 @@ export enum ProfilePageActionsTypeEnum {
     UPDATE_NEW_POST_TEXT= 'UPDATE_NEW_POST_TEXT',
     ADD_POST = 'ADD_POST',
     SET_USER_PROFILE = 'SET_USER_PROFILE',
+    TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
 }
 
 export type ProfileContactsType = {
@@ -33,6 +34,7 @@ export type ProfileType = {
 export type ActionsTypes = AddPostACType
     | UpdateNewPostTextACType
     | SetUserProfileACType
+    | SetIsFetchingACType
 
 
 // actions type
@@ -50,4 +52,9 @@ export type UpdateNewPostTextACType = {
 export type SetUserProfileACType = {
     type: ProfilePageActionsTypeEnum.SET_USER_PROFILE,
     payload: {profile: ProfileType}
+}
+
+export type SetIsFetchingACType = {
+    type: ProfilePageActionsTypeEnum.TOGGLE_IS_FETCHING,
+    payload: {isFetching: boolean}
 }

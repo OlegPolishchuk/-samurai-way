@@ -1,7 +1,7 @@
 import {
     AddPostACType,
     ProfilePageActionsTypeEnum,
-    ProfileType,
+    ProfileType, SetIsFetchingACType,
     SetUserProfileACType,
     UpdateNewPostTextACType
 } from "./types";
@@ -35,6 +35,13 @@ export const setUserProfileAC = (profile: ProfileType): SetUserProfileACType => 
     return {
         type: ProfilePageActionsTypeEnum.SET_USER_PROFILE,
         payload: {profile}
+    }
+}
+
+export const setIsFetchingAC = (isFetching: boolean): SetIsFetchingACType => {
+    return {
+        type: ProfilePageActionsTypeEnum.TOGGLE_IS_FETCHING,
+        payload: {isFetching}
     }
 }
 

@@ -8,10 +8,9 @@ type ProfileInfoType = {
 }
 
 const ProfileInfo: React.FC<ProfileInfoType> = ({profile}) => {
-    console.log(profile)
     const profileContacts = profile.contacts ? Object.keys(profile.contacts) : null
 
-    const profileContactsList  = profileContacts ?  profileContacts.map((el,i) =>{
+    const profileContactsList = profileContacts ? profileContacts.map((el, i) => {
         if (profile.contacts[el]) {
             return (
                 <p key={`${el}${i}`}>{el}
@@ -25,7 +24,6 @@ const ProfileInfo: React.FC<ProfileInfoType> = ({profile}) => {
 
     return (
         <>
-            {Object.keys(profile).length === 0 && <Preloader/>}
             <section className={style.profile}>
                 {/*Profile description*/}
                 <div className={style.profile_name}>
