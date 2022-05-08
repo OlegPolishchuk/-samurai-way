@@ -8,6 +8,21 @@ type ProfileInfoType = {
 }
 
 const ProfileInfo: React.FC<ProfileInfoType> = ({profile}) => {
+    console.log(profile)
+    const profileContacts = profile.contacts ? Object.keys(profile.contacts) : null
+
+    const profileContactsList  = profileContacts ?  profileContacts.map((el,i) =>{
+        if (profile.contacts[el]) {
+            return (
+                <p key={`${el}${i}`}>{el}
+                    <span>
+                        <a href={`${profile.contacts[el]}`}>{profile.contacts[el]}</a>
+                    </span>
+                </p>
+            )
+        }
+    }) : null
+
     return (
         <>
             {Object.keys(profile).length === 0 && <Preloader/>}
@@ -18,9 +33,7 @@ const ProfileInfo: React.FC<ProfileInfoType> = ({profile}) => {
                     <p className={style.profile_status}>{profile.aboutMe}</p>
                 </div>
                 <div className={style.profile_data}>
-                    <p>City <span>Minsk</span></p>
-                    <p>Age <span>30</span></p>
-                    <p>Marital status <span>single</span></p>
+                    {profileContactsList}
                 </div>
                 <button className={style.edit_btn + ' common_btn'}>Edit profile</button>
             </section>
