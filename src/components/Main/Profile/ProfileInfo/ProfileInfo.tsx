@@ -1,7 +1,6 @@
 import React from 'react';
 import style from "./ProfileInfo.module.css";
 import {ProfileType} from "../../../../redux/profile-reducer/types";
-import Preloader from "../../../Preloader/Preloader";
 
 type ProfileInfoType = {
     profile: ProfileType
@@ -11,15 +10,15 @@ const ProfileInfo: React.FC<ProfileInfoType> = ({profile}) => {
     const profileContacts = profile.contacts ? Object.keys(profile.contacts) : null
 
     const profileContactsList = profileContacts ? profileContacts.map((el, i) => {
-        if (profile.contacts[el]) {
-            return (
+        return profile.contacts[el]
+            ? (
                 <p key={`${el}${i}`}>{el}
                     <span>
-                        <a href={`${profile.contacts[el]}`}>{profile.contacts[el]}</a>
+                        <a href={`https://${profile.contacts[el]}`}>{profile.contacts[el]}</a>
                     </span>
                 </p>
             )
-        }
+            : null
     }) : null
 
     return (

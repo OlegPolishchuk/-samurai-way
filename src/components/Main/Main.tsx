@@ -15,7 +15,7 @@ const Main = (props: PropsType) => {
     return (
         <main className={style.main_wrapper + ' main_style'}>
             <Route
-                path={'/profile/:userId'}
+                path={'/profile/:userId?'}
                 render={() => <ProfileContainer />}
             />
             <Route

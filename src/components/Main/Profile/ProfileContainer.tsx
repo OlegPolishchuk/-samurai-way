@@ -18,7 +18,9 @@ const ProfileContainer: React.FC<PropsType> = (props) => {
 
     const dispatch = useAppDispatch()
 
-    let userId = props.match.params.userId
+    //хардкодим параметр userId = 2, если на стартовой странице не выбран юзер
+    let userId = props.match.params.userId ? props.match.params.userId : 2
+
 
     useEffect(() => {
         dispatch(setIsFetchingAC(true))
@@ -28,7 +30,7 @@ const ProfileContainer: React.FC<PropsType> = (props) => {
                 dispatch(setIsFetchingAC(false))
                 dispatch(setUserProfileAC(res.data))
             })
-    },[userId])
+    },[userId, dispatch])
 
     return (
         <>
