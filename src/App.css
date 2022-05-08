@@ -31,14 +31,6 @@
   background: #E1E9F0;
 }
 
-.isFetching {
-  width: 80px;
-  height: 80px;
-
-  position: absolute;
-  top: calc(50% - 40px);
-  left: calc(50% - 40px);
-}
 
 
 @media screen  and (max-width: 1200px){

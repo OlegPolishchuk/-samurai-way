@@ -1,11 +1,12 @@
 import React from 'react';
+import s from './Preloader.module.css'
 
 const Preloader: React.FC = () => {
     const preloader = require( '../../assets/img/preloader.gif')
 
     return (
         <div>
-            <img className={'isFetching'} src={preloader} alt={'preloader'}/>
+            <img className={s.isFetching} src={preloader} alt={'preloader'}/>
         </div>
     );
 };

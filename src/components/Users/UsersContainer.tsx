@@ -1,17 +1,16 @@
 import Users from "./Users";
-import {
-    followAC,
-    setCurrentPageAC,
-    setIsFetchingAC,
-    setTotalCountAC,
-    setUsersAC,
-    unFollowAC,
-    UserType
-} from "../../redux/users-reducer";
 import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
 import axios from "axios";
 import {useEffect} from "react";
 import Preloader from "../Preloader/Preloader";
+import {
+    followAC, setCurrentPageAC,
+    setIsFetchingAC,
+    setTotalCountAC,
+    setUsersAC,
+    unFollowAC
+} from "../../redux/users-reducer/action-creators";
+import {UserType} from "../../redux/users-reducer/users-reducer";
 
 
 const UsersContainer = () => {

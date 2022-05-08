@@ -15,10 +15,21 @@
     width: 100%;
 
     display: flex;
-
+    justify-content: space-between;
     margin-bottom: 15px;
 
-    cursor: pointer;
+    /*cursor: pointer;*/
+}
+
+.user_wrapper a {
+    color: #333333;
+    text-decoration: none;
+
+    transition: all .2s ease;
+}
+
+.user_wrapper:hover a {
+    color: #8a8a8a;
 }
 
 .user_wrapper:hover {

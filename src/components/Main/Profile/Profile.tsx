@@ -3,16 +3,18 @@ import style from './Profile.module.css';
 import ProfilePhoto from "./ProfilePhoto/ProfilePhoto";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import PostsContainer from "../Posts/Post/PostsContainer";
+import {ProfileType} from "../../../redux/profile-reducer/types";
 
-type ProfilePagePropsType = {}
+type ProfilePagePropsType = {
+    profile: ProfileType
+}
 
-const Profile = (props: ProfilePagePropsType) => {
-
+const Profile: React.FC<ProfilePagePropsType> = ({profile}) => {
     return (
         <>
             <div className={style.profile_wrapper}>
-                <ProfilePhoto/>
-                <ProfileInfo/>
+                <ProfilePhoto photo={profile.photos}/>
+                <ProfileInfo profile={profile}/>
             </div>
             <PostsContainer/>
         </>

@@ -1,16 +1,6 @@
 import {v1} from "uuid";
-
-export type PostType = {
-    id: string
-    userName: string
-    photo: string
-    post: string
-    date: string
-    likeCount: number
-}
-
-const ADD_POST = 'ADD-POST'
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
+import {ActionsTypes, ProfilePageActionsTypeEnum, ProfileType} from "./types";
+import {PostType} from "./action-creators";
 
 const initialState = {
     posts: [
@@ -37,17 +27,16 @@ const initialState = {
         }
     ] as Array<PostType>,
     newPostText: '',
+    profile: {} as ProfileType,
 }
 
 export type InitialStateType = typeof initialState
 
-export type ActionsTypes = ReturnType<typeof addPostAC>
-    | ReturnType<typeof updateNewPostTextAC>
 
 const profileReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
 
     switch (action.type) {
-        case ADD_POST:
+        case ProfilePageActionsTypeEnum.ADD_POST:
             const newPost: PostType = {
                 id: v1(),
                 date: new Date().toISOString(),
@@ -59,8 +48,14 @@ const profileReducer = (state: InitialStateType = initialState, action: ActionsT
             console.log(newPost)
             return {...state, posts: [newPost, ...state.posts], newPostText: ''}
 
-        case UPDATE_NEW_POST_TEXT:
+        case ProfilePageActionsTypeEnum.UPDATE_NEW_POST_TEXT:
             return {...state, newPostText: action.payload.newText}
+
+        case ProfilePageActionsTypeEnum.SET_USER_PROFILE:
+            return {
+                ...state,
+                ...action.payload
+            }
 
         default:
             return state
@@ -70,18 +65,5 @@ const profileReducer = (state: InitialStateType = initialState, action: ActionsT
 export default profileReducer
 
 
-//actionCreators
-export const addPostAC = () => {
-    return {
-        type: 'ADD-POST'
-    } as const
-}
 
-export const updateNewPostTextAC = (newText: string) => {
-    return {
-        type: "UPDATE-NEW-POST-TEXT",
-        payload: {
-            newText
-        }
-    } as const
-}
+

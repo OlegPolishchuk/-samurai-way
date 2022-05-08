@@ -1,5 +1,7 @@
 import {v1} from "uuid";
-import usersReducer, {followAC, setUsersAC, unFollowAC, UserType} from "../../redux/users-reducer";
+import usersReducer, {UserType} from "../../redux/users-reducer/users-reducer";
+import {followAC, setUsersAC, unFollowAC} from "../../redux/users-reducer/action-creators";
+
 
 
 

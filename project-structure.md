@@ -21,6 +21,8 @@
                             Dialogs --> TextArea
                     Main --> UsersContainer(<UsersContainer /> HOC)
                         UsersContainer --> Users(<Users />)
+                            Users --> Pagination(<Pagination />)
+                            Users --> Preloader(<Preloader/>)
                     dialogReducer --> Dialogs     
                     profileReducer --> Profile 
                     usersReducer --> Users      

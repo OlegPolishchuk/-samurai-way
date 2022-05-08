@@ -23,6 +23,9 @@
     background: #D7DFE6;
 }
 
+.avatar {
+    width: 100%;
+}
 
 @media screen and (max-width: 1200px){
     .aside {

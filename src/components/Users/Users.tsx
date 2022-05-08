@@ -1,7 +1,8 @@
 import React from 'react';
 import s from './Users.module.css'
 import {Pagination} from "../Pagination/Pagination";
-import {InitialStateType} from "../../redux/users-reducer";
+import {InitialStateType} from "../../redux/users-reducer/users-reducer";
+import {NavLink} from 'react-router-dom';
 
 type UsersPropsType = {
     usersPage: InitialStateType,
@@ -42,16 +43,19 @@ const Users: React.FC<UsersPropsType> = (
             />
             {users.map(el => {
                 return (
+
                     <div key={el.id} className={s.user_wrapper}>
-                        <figure className={s.inner_wrapper}>
-                            <img className={s.user_avatar} alt={'avatar'}
-                                 src={el.photos.small !== null ? el.photos.small : userPhoto}/>
-                            <figcaption className={s.user_description}>
-                                {/* user name */}
-                                <h3 className={s.user_name}>{el.name}</h3>
-                                <p className={s.user_status}>{el.status}</p>
-                            </figcaption>
-                        </figure>
+                        <NavLink to={`/profile/${el.id}`}>
+                            <figure className={s.inner_wrapper}>
+                                <img className={s.user_avatar} alt={'avatar'}
+                                     src={el.photos.small !== null ? el.photos.small : userPhoto}/>
+                                <figcaption className={s.user_description}>
+                                    {/* user name */}
+                                    <h3 className={s.user_name}>{el.name}</h3>
+                                    <p className={s.user_status}>{el.status}</p>
+                                </figcaption>
+                            </figure>
+                        </NavLink>
                         {el.followed
                             ? <button
                                 onClick={() => {
@@ -67,6 +71,7 @@ const Users: React.FC<UsersPropsType> = (
                             >Follow</button>
                         }
                     </div>
+
                 )
             })}
             <Pagination

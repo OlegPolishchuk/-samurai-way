@@ -1,7 +1,7 @@
 // id
 import {v1} from "uuid";
-import profileReducer, {addPostAC, updateNewPostTextAC} from "./profile-reducer";
 import dialogsReducer, {sendNewMessageAC, updateNewMessageTextAC} from "./dialogs-reducer";
+import {addPostAC, updateNewPostTextAC} from "./profile-reducer/action-creators";
 
 /// DialogsPage types
 type DataType = {
