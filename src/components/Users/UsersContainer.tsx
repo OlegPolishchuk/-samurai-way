@@ -11,6 +11,7 @@ import {
     unFollowAC
 } from "../../redux/users-reducer/action-creators";
 import {UserType} from "../../redux/users-reducer/users-reducer";
+import {usersAPI} from "../../api/api";
 
 
 const UsersContainer = () => {
@@ -21,32 +22,19 @@ const UsersContainer = () => {
 
     useEffect(() => {
         dispatch(setIsFetchingAC(true))
-        axios
-            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${pageSize}`,
-                {
-                    withCredentials: true
-                })
-            .then(res => {
+
+        usersAPI.getUsers(currentPage, pageSize)
+            .then(data => {
                 dispatch(setIsFetchingAC(false))
-                setUsers(res.data.items)
-                setTotalCount(res.data.totalCount)
+                setUsers(data.items)
+                setTotalCount(data.totalCount)
             })
     }, [currentPage, pageSize])
 
 
-
-
     const follow = (userId: string) => {
-        axios
-            .post(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`,
-                {},
-                {
-                    withCredentials: true,
-                    headers: {
-                        'API-KEY' : 'c475897d-e7c6-4b7b-b62d-8534f379a294'
-                    }
-                }
-            )
+        usersAPI
+            .follow(userId, {})
             .then(res => {
                 if (res.data.resultCode === 0) {
                     dispatch(followAC(userId))
@@ -57,14 +45,8 @@ const UsersContainer = () => {
     }
 
     const unFollow = (userId: string) => {
-        axios
-            .delete(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`,
-                {
-                    withCredentials: true,
-                    headers: {
-                        'API-KEY' : 'c475897d-e7c6-4b7b-b62d-8534f379a294'
-                    }
-                })
+        usersAPI
+            .unfollow(userId)
             .then(res => {
                 dispatch(unFollowAC(userId))
             })
