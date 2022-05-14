@@ -22,7 +22,10 @@ const UsersContainer = () => {
     useEffect(() => {
         dispatch(setIsFetchingAC(true))
         axios
-            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${pageSize}`)
+            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${pageSize}`,
+                {
+                    withCredentials: true
+                })
             .then(res => {
                 dispatch(setIsFetchingAC(false))
                 setUsers(res.data.items)
@@ -34,11 +37,37 @@ const UsersContainer = () => {
 
 
     const follow = (userId: string) => {
-        dispatch(followAC(userId))
+        axios
+            .post(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`,
+                {},
+                {
+                    withCredentials: true,
+                    headers: {
+                        'API-KEY' : 'c475897d-e7c6-4b7b-b62d-8534f379a294'
+                    }
+                }
+            )
+            .then(res => {
+                if (res.data.resultCode === 0) {
+                    dispatch(followAC(userId))
+                }
+            })
+            .catch(err => console.warn(err))
+
     }
 
     const unFollow = (userId: string) => {
-        dispatch(unFollowAC(userId))
+        axios
+            .delete(`https://social-network.samuraijs.com/api/1.0/follow/${userId}`,
+                {
+                    withCredentials: true,
+                    headers: {
+                        'API-KEY' : 'c475897d-e7c6-4b7b-b62d-8534f379a294'
+                    }
+                })
+            .then(res => {
+                dispatch(unFollowAC(userId))
+            })
     }
 
     const setUsers = (users: Array<UserType>) => {
