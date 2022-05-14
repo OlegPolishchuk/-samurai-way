@@ -11,7 +11,7 @@ type UsersPropsType = {
     setCurrentPage: (currentPage: number) => void
 }
 
-const Users: React.FC<UsersPropsType> = (
+const Users: React.FC<UsersPropsType> = React.memo( (
     {
         usersPage,
         follow,
@@ -19,7 +19,6 @@ const Users: React.FC<UsersPropsType> = (
         setCurrentPage
     }
 ) => {
-
     const {users, totalCount, pageSize, currentPage} = usersPage
 
 
@@ -82,6 +81,6 @@ const Users: React.FC<UsersPropsType> = (
             />
         </div>
     );
-};
+});
 
 export default Users

@@ -8,6 +8,26 @@
 .wrapper {
     width: 1200px;
     margin: 0 auto;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.login {
+    color: #333333;
+    font-weight: bold;
+
+    text-decoration: none;
+}
+
+.loginName {
+    color: #333333;
+    font-weight: bold;
+}
+
+.login:hover {
+    color: #606060;
 }
 
 @media screen and (max-width: 1200px) {

@@ -4,14 +4,18 @@ import dialogsReducer from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
 import usersReducer from "./users-reducer/users-reducer";
 import thunk, {ThunkDispatch} from "redux-thunk";
+import authReducer from "./auth-reducer/auth-reducer";
+
+
 
 
 const rootReducer = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     sidebar: sidebarReducer,
-    usersPage: usersReducer
-})
+    usersPage: usersReducer,
+    auth: authReducer,
+   })
 
 export const store = createStore(rootReducer, applyMiddleware(thunk))
 

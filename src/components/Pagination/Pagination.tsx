@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useMemo} from 'react'
 import s from './Pagination.module.css'
 import {showPages} from "../../utils/showPages";
 
@@ -9,7 +9,7 @@ type PaginationPropsType = {
     callBack: (page: number) => void
 }
 
-export const Pagination: React.FC<PaginationPropsType> = (
+export const Pagination: React.FC<PaginationPropsType> = React.memo( (
     {
         totalCount,
         currentPageNumber,
@@ -17,7 +17,9 @@ export const Pagination: React.FC<PaginationPropsType> = (
         callBack
     }
 ) => {
-    const pagesCount = Math.ceil(totalCount / pageSize)
+    const pagesCount = useMemo(() => {
+        return Math.ceil(totalCount / pageSize)
+    }, [totalCount, pageSize])
 
     const onClickHandler = (pageNumber: number) => {
         callBack(pageNumber)
@@ -44,4 +46,4 @@ export const Pagination: React.FC<PaginationPropsType> = (
             {pages}
         </div>
     )
-}
+})

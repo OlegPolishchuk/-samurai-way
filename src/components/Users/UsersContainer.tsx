@@ -1,7 +1,7 @@
 import Users from "./Users";
 import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
 import axios from "axios";
-import {useEffect} from "react";
+import React, {useEffect} from "react";
 import Preloader from "../Preloader/Preloader";
 import {
     followAC, setCurrentPageAC,

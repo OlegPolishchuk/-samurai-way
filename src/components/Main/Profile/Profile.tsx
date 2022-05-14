@@ -11,7 +11,6 @@ type ProfilePagePropsType = {
 }
 
 const Profile: React.FC<ProfilePagePropsType> = ({profile}) => {
-    console.log(profile)
     return (
         <>
             {!profile && <Preloader/>}
