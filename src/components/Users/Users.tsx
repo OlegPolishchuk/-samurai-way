@@ -9,6 +9,7 @@ type UsersPropsType = {
     follow: (userId: string) => void,
     unFollow: (userId: string) => void,
     setCurrentPage: (currentPage: number) => void
+    followingInProgress: string[]
 }
 
 const Users: React.FC<UsersPropsType> = React.memo( (
@@ -16,11 +17,12 @@ const Users: React.FC<UsersPropsType> = React.memo( (
         usersPage,
         follow,
         unFollow,
-        setCurrentPage
+        setCurrentPage,
+        followingInProgress,
     }
 ) => {
     const {users, totalCount, pageSize, currentPage} = usersPage
-
+    console.log(followingInProgress)
 
     const onFollowHandler = (userId: string) => {
         follow(userId)
@@ -41,6 +43,7 @@ const Users: React.FC<UsersPropsType> = React.memo( (
                 callBack={setCurrentPage}
             />
             {users.map(el => {
+                {console.log(followingInProgress.some(id => id === el.id))}
                 return (
 
                     <div key={el.id} className={s.user_wrapper}>
@@ -57,12 +60,14 @@ const Users: React.FC<UsersPropsType> = React.memo( (
                         </NavLink>
                         {el.followed
                             ? <button
+                                disabled={followingInProgress.some(id => id === el.id)}
                                 onClick={() => {
                                     onUnFollowHandler(el.id)
                                 }}
                                 className={`common_btn ${s.btn_unfollow} ${s.btn}`}
                             >Unfollow</button>
                             : <button
+                                disabled={followingInProgress.some(id => id === el.id)}
                                 onClick={() => {
                                     onFollowHandler(el.id)
                                 }}

@@ -14,7 +14,8 @@ const initialState = {
     totalCount: 0,
     pageSize: 0,
     currentPage: 0,
-    isFetching: false
+    isFetching: false,
+    followingInProgress: []
 }
 
 test('Case FOLLOW should set in InitialState property "followed" to true', () => {

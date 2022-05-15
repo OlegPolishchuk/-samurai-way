@@ -1,8 +1,10 @@
 import {
     FollowACType,
-    SetCurrentPageACType, SetIsFetchingACType,
+    SetCurrentPageACType,
+    SetIsFetchingACType,
     SetTotalCountACType,
     SetUsersACType,
+    ToggleIdFollowingACType,
     UnFollowACType,
     UserPageActionsTypeEnum
 } from "./types";
@@ -59,6 +61,16 @@ export const setIsFetchingAC = (isFetching: boolean): SetIsFetchingACType => {
         type: UserPageActionsTypeEnum.TOGGLE_IS_FETCHING,
         payload: {
             isFetching
+        }
+    }
+}
+
+export const toggleIsFollowingProgress = (isFetching: boolean,userId: string): ToggleIdFollowingACType => {
+    return {
+        type: UserPageActionsTypeEnum.TOGGLE_IS_FOLLOWING_PROGRESS,
+        payload: {
+            isFetching,
+            userId,
         }
     }
 }

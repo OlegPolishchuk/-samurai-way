@@ -18,7 +18,8 @@ const initialState = {
     totalCount: 0,
     pageSize: 10,
     currentPage: 1,
-    isFetching: true
+    isFetching: true,
+    followingInProgress: [] as string[],
 }
 
 export type InitialStateType = typeof initialState
@@ -52,6 +53,14 @@ const usersReducer = (state: InitialStateType = initialState, action: ActionType
             return {
                 ...state,
                 ...action.payload
+            }
+
+        case UserPageActionsTypeEnum.TOGGLE_IS_FOLLOWING_PROGRESS:
+            return {
+                ...state,
+                followingInProgress: action.payload.isFetching
+                    ? [...state.followingInProgress, action.payload.userId]
+                    : state.followingInProgress.filter(id => id !== action.payload.userId)
             }
 
         default:

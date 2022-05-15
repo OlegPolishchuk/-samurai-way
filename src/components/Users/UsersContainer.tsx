@@ -1,13 +1,13 @@
 import Users from "./Users";
 import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
-import axios from "axios";
 import React, {useEffect} from "react";
 import Preloader from "../Preloader/Preloader";
 import {
-    followAC, setCurrentPageAC,
+    followAC,
+    setCurrentPageAC,
     setIsFetchingAC,
     setTotalCountAC,
-    setUsersAC,
+    setUsersAC, toggleIsFollowingProgress,
     unFollowAC
 } from "../../redux/users-reducer/action-creators";
 import {UserType} from "../../redux/users-reducer/users-reducer";
@@ -16,7 +16,7 @@ import {usersAPI} from "../../api/api";
 
 const UsersContainer = () => {
     const usersPage = useAppSelector(state => state.usersPage)
-    const {pageSize, currentPage, isFetching} = usersPage
+    const {pageSize, currentPage, isFetching, followingInProgress} = usersPage
 
     const dispatch = useAppDispatch()
 
@@ -33,11 +33,13 @@ const UsersContainer = () => {
 
 
     const follow = (userId: string) => {
+        dispatch(toggleIsFollowingProgress(true, userId))
         usersAPI
             .follow(userId, {})
             .then(res => {
                 if (res.data.resultCode === 0) {
                     dispatch(followAC(userId))
+                    dispatch(toggleIsFollowingProgress(false, userId))
                 }
             })
             .catch(err => console.warn(err))
@@ -45,10 +47,12 @@ const UsersContainer = () => {
     }
 
     const unFollow = (userId: string) => {
+        dispatch(toggleIsFollowingProgress(true, userId))
         usersAPI
             .unfollow(userId)
             .then(res => {
                 dispatch(unFollowAC(userId))
+                dispatch(toggleIsFollowingProgress(false, userId))
             })
     }
 
@@ -70,6 +74,7 @@ const UsersContainer = () => {
             {isFetching && <Preloader/>}
             <Users
                 usersPage={usersPage}
+                followingInProgress={followingInProgress}
                 follow={follow}
                 setCurrentPage={setCurrentPage}
                 unFollow={unFollow}
