@@ -2,17 +2,8 @@ import Users from "./Users";
 import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
 import React, {useEffect} from "react";
 import Preloader from "../Preloader/Preloader";
-import {
-    followAC,
-    setCurrentPageAC,
-    setIsFetchingAC,
-    setTotalCountAC,
-    setUsersAC, toggleIsFollowingProgress,
-    unFollowAC
-} from "../../redux/users-reducer/action-creators";
-import {UserType} from "../../redux/users-reducer/users-reducer";
-import {usersAPI} from "../../api/api";
-import {getUsersTC} from "../../redux/users-reducer/thunk-creators";
+import {setCurrentPageAC} from "../../redux/users-reducer/action-creators";
+import {followTC, getUsersTC, unFollowTC} from "../../redux/users-reducer/thunk-creators";
 
 
 const UsersContainer = () => {
@@ -23,48 +14,15 @@ const UsersContainer = () => {
 
     useEffect(() => {
         dispatch(getUsersTC(currentPage, pageSize))
-        // dispatch(setIsFetchingAC(true))
-        //
-        // usersAPI.getUsers(currentPage, pageSize)
-        //     .then(data => {
-        //         dispatch(setIsFetchingAC(false))
-        //         setUsers(data.items)
-        //         setTotalCount(data.totalCount)
-        //     })
     }, [currentPage, pageSize])
 
 
     const follow = (userId: string) => {
-        dispatch(toggleIsFollowingProgress(true, userId))
-        usersAPI
-            .follow(userId, {})
-            .then(res => {
-                if (res.data.resultCode === 0) {
-                    dispatch(followAC(userId))
-                    dispatch(toggleIsFollowingProgress(false, userId))
-                }
-            })
-            .catch(err => console.warn(err))
-
+        dispatch(followTC(userId))
     }
 
     const unFollow = (userId: string) => {
-        dispatch(toggleIsFollowingProgress(true, userId))
-        usersAPI
-            .unfollow(userId)
-            .then(res => {
-                dispatch(unFollowAC(userId))
-                dispatch(toggleIsFollowingProgress(false, userId))
-            })
-    }
-
-    const setUsers = (users: Array<UserType>) => {
-        dispatch(setUsersAC(users))
-    }
-
-
-    const setTotalCount = (totalCount: number) => {
-        dispatch(setTotalCountAC(totalCount))
+        dispatch(unFollowTC(userId))
     }
 
     const setCurrentPage = (currentPage: number) => {

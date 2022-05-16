@@ -42,7 +42,6 @@ const Users: React.FC<UsersPropsType> = React.memo( (
                 callBack={setCurrentPage}
             />
             {users.map(el => {
-                {console.log(followingInProgress.some(id => id === el.id))}
                 return (
 
                     <div key={el.id} className={s.user_wrapper}>
