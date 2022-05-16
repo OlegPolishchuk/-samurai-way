@@ -12,6 +12,7 @@ import {
 } from "../../redux/users-reducer/action-creators";
 import {UserType} from "../../redux/users-reducer/users-reducer";
 import {usersAPI} from "../../api/api";
+import {getUsersTC} from "../../redux/users-reducer/thunk-creators";
 
 
 const UsersContainer = () => {
@@ -21,14 +22,15 @@ const UsersContainer = () => {
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        dispatch(setIsFetchingAC(true))
-
-        usersAPI.getUsers(currentPage, pageSize)
-            .then(data => {
-                dispatch(setIsFetchingAC(false))
-                setUsers(data.items)
-                setTotalCount(data.totalCount)
-            })
+        dispatch(getUsersTC(currentPage, pageSize))
+        // dispatch(setIsFetchingAC(true))
+        //
+        // usersAPI.getUsers(currentPage, pageSize)
+        //     .then(data => {
+        //         dispatch(setIsFetchingAC(false))
+        //         setUsers(data.items)
+        //         setTotalCount(data.totalCount)
+        //     })
     }, [currentPage, pageSize])
 
 

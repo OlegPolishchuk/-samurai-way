@@ -22,7 +22,6 @@ const Users: React.FC<UsersPropsType> = React.memo( (
     }
 ) => {
     const {users, totalCount, pageSize, currentPage} = usersPage
-    console.log(followingInProgress)
 
     const onFollowHandler = (userId: string) => {
         follow(userId)
