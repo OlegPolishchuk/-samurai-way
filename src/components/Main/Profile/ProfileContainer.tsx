@@ -1,12 +1,8 @@
 import React, {useEffect} from 'react';
 import Profile from "./Profile";
-import axios from "axios";
 import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
-import {setIsFetchingAC, setUserProfileAC} from "../../../redux/profile-reducer/action-creators";
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 import Preloader from "../../Preloader/Preloader";
-import {usersAPI} from "../../../api/api";
-import {getUsersTC} from "../../../redux/users-reducer/thunk-creators";
 import {getUserProfileTC} from "../../../redux/profile-reducer/thunk-creators";
 
 type PathParamsType = {
@@ -27,12 +23,6 @@ const ProfileContainer: React.FC<PropsType> = (props) => {
 
     useEffect(() => {
         dispatch(getUserProfileTC(userId))
-        // dispatch(setIsFetchingAC(true))
-        // usersAPI.getProfile(userId)
-        //     .then(res => {
-        //         dispatch(setIsFetchingAC(false))
-        //         dispatch(setUserProfileAC(res.data))
-        //     })
     },[userId, dispatch])
 
     return (
