@@ -1,4 +1,5 @@
 import {instance} from "../instances/instances";
+import axios from "axios";
 
 
 export const usersAPI = {
@@ -19,5 +20,19 @@ export const usersAPI = {
     unfollow(userId: string){
         return instance
             .delete(`follow/${userId}`)
+    },
+
+    getProfile(userId: string | number) {
+        return instance
+            .get(`profile/${userId}`)
+    },
+
+
+}
+
+export const authAPI = {
+    getMe() {
+        return instance
+            .get(`auth/me`)
     }
 }

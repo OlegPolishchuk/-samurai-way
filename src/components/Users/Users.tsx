@@ -12,7 +12,7 @@ type UsersPropsType = {
     followingInProgress: string[]
 }
 
-const Users: React.FC<UsersPropsType> = React.memo( (
+const Users: React.FC<UsersPropsType> = React.memo((
     {
         usersPage,
         follow,
@@ -43,7 +43,6 @@ const Users: React.FC<UsersPropsType> = React.memo( (
             />
             {users.map(el => {
                 return (
-
                     <div key={el.id} className={s.user_wrapper}>
                         <NavLink to={`/profile/${el.id}`}>
                             <figure className={s.inner_wrapper}>

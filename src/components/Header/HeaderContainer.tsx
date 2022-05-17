@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
 import Header from "./Header";
 import {setIsFetchingAC} from "../../redux/users-reducer/action-creators";
-import axios from "axios";
 import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
 import {setAuthUserDataAC} from "../../redux/auth-reducer/action-creators";
+import {authAPI} from "../../api/api";
 
 const HeaderContainer: React.FC = () => {
     const dispatch = useAppDispatch()
@@ -13,10 +13,7 @@ const HeaderContainer: React.FC = () => {
 
     useEffect(() => {
         dispatch(setIsFetchingAC(true))
-        axios
-            .get(`https://social-network.samuraijs.com/api/1.0/auth/me`,
-                {withCredentials: true}
-            )
+       authAPI.getMe()
             .then(res => {
                 if (res.data.resultCode === 0) {
                     dispatch(setAuthUserDataAC(res.data.data))

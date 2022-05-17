@@ -44,7 +44,7 @@ export const unFollowTC = (userId: string) => {
         dispatch(toggleIsFollowingProgress(true, userId))
         usersAPI
             .unfollow(userId)
-            .then(res => {
+            .then(() => {
                 dispatch(unFollowAC(userId))
                 dispatch(toggleIsFollowingProgress(false, userId))
             })
