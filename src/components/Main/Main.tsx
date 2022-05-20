@@ -4,11 +4,10 @@ import {Route} from "react-router-dom";
 import DialogsContainer from "../Dialogs/DialogsContainer";
 import UsersContainer from "../Users/UsersContainer";
 import ProfileContainer from "./Profile/ProfileContainer";
+import Login from "../login/Login";
 
 
-type PropsType = {
-
-}
+type PropsType = {}
 
 const Main = (props: PropsType) => {
 
@@ -16,18 +15,23 @@ const Main = (props: PropsType) => {
         <main className={style.main_wrapper + ' main_style'}>
             <Route
                 path={'/profile/:userId?'}
-                render={() => <ProfileContainer />}
+                render={() => <ProfileContainer/>}
             />
             <Route
                 path={'/dialogs'}
-                render={() => <DialogsContainer />}
+                render={() => <DialogsContainer/>}
             />
             <Route
                 path={'/users'}
-                render={() => <UsersContainer />}
+                render={() => <UsersContainer/>}
             />
-        </main>
-    );
+            <Route
+                path={'/login'}
+                render={() => <Login/>}
+            />
+</main>
+)
+    ;
 };
 
 export default Main;
