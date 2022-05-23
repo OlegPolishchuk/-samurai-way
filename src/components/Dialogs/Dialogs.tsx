@@ -4,13 +4,12 @@ import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 import TextArea from "../TextArea/TextArea";
 import {DialogsPropsType} from "./DialogsContainer";
-import {Redirect} from "react-router-dom";
 
 
 const Dialogs = (props: DialogsPropsType) => {
     // дестркутуризация пропсов
     const {data, messages, newMessageText} = props.dialogsPage;
-    const {addMessage, updateMessageText, isAuth} = props
+    const {addMessage, updateMessageText} = props
 
     const onChangeTextHandler = (text: string) => {
         updateMessageText(text)
@@ -23,7 +22,7 @@ const Dialogs = (props: DialogsPropsType) => {
     let dialogList = data.map(el =>  <DialogItem key={el.id} name={el.name} avatar={el.avatar} id={el.id}/>);
     let messageList = messages.map(el => <Message key={el.id} id={el.id} name={el.name} avatar={el.avatar} message={el.message} />);
 
-    if (!isAuth) return <Redirect to={'/login'}/>
+
 
     return (
         <div className={style.wrapper}>

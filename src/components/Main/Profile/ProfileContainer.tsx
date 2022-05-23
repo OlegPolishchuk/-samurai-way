@@ -4,6 +4,7 @@ import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
 import {Redirect, RouteComponentProps, withRouter} from 'react-router-dom';
 import Preloader from "../../Preloader/Preloader";
 import {getUserProfileTC} from "../../../redux/profile-reducer/thunk-creators";
+import {withAuthRedirect} from "../../../hoc/AuthRedirect";
 
 type PathParamsType = {
     userId: string
@@ -15,7 +16,6 @@ const ProfileContainer: React.FC<PropsType> = (props) => {
     const profile = useAppSelector(state => state.profilePage.profile)
     const isFetching = useAppSelector(state => state.profilePage.isFetching)
     const isAuth = useAppSelector(state => state.auth.isAuth)
-
     const dispatch = useAppDispatch()
 
     //хардкодим параметр userId = 2, если на стартовой странице не выбран юзер
@@ -26,7 +26,7 @@ const ProfileContainer: React.FC<PropsType> = (props) => {
         dispatch(getUserProfileTC(userId))
     },[userId, dispatch])
 
-    if (!isAuth) return <Redirect to={'/login'}/>
+    // if (!isAuth) return <Redirect to={'/login'}/>
     return (
         <>
             {isFetching && <Preloader/>}
@@ -35,4 +35,4 @@ const ProfileContainer: React.FC<PropsType> = (props) => {
     );
 };
 
-export default withRouter(ProfileContainer);
+export default withAuthRedirect(withRouter(ProfileContainer));
