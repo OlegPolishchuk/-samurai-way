@@ -8,7 +8,6 @@ type PropsType = {
 }
 
 const Header: React.FC<PropsType> = ({isAuth, login}) => {
-    console.log(isAuth)
     return (
         <header className={style.main_header}>
             <div className={style.wrapper}>

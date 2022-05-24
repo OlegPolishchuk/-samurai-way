@@ -1,10 +1,11 @@
 import React, {useEffect} from 'react';
 import Profile from "./Profile";
 import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
-import {Redirect, RouteComponentProps, withRouter} from 'react-router-dom';
+import {RouteComponentProps, withRouter} from 'react-router-dom';
 import Preloader from "../../Preloader/Preloader";
 import {getUserProfileTC} from "../../../redux/profile-reducer/thunk-creators";
 import {withAuthRedirect} from "../../../hoc/AuthRedirect";
+import {compose} from "redux";
 
 type PathParamsType = {
     userId: string
@@ -26,7 +27,6 @@ const ProfileContainer: React.FC<PropsType> = (props) => {
         dispatch(getUserProfileTC(userId))
     },[userId, dispatch])
 
-    // if (!isAuth) return <Redirect to={'/login'}/>
     return (
         <>
             {isFetching && <Preloader/>}
@@ -35,4 +35,7 @@ const ProfileContainer: React.FC<PropsType> = (props) => {
     );
 };
 
-export default withAuthRedirect(withRouter(ProfileContainer));
+export default compose<React.ComponentType>(
+    withAuthRedirect,
+    withRouter
+)(ProfileContainer)
