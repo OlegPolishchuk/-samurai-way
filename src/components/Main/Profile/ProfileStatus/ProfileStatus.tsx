@@ -5,7 +5,10 @@ import s from './ProfileStatus.module.css'
 const ProfileStatus = () => {
     const [editMode, setEditMode] = useState(false)
 
-    const status = useAppSelector(state => state.profilePage.profile.aboutMe)
+    // const status = useAppSelector(state => state.profilePage.profile.aboutMe)
+    const status = useAppSelector(state => state.profilePage.userStatus)
+
+    const [localStatus, setLocalStatus] = useState(status)
 
     const onDblClickHandler = (e: React.MouseEvent<HTMLParagraphElement, MouseEvent>) => {
         setEditMode(true)
@@ -21,9 +24,9 @@ const ProfileStatus = () => {
                 ? <input
                     className={s.editable_status}
                     type={'text'}
-                    value={status}
+                    value={localStatus}
                     onBlur={onBlurHandler}
-                    onChange={() => {}}
+                    onChange={(e) => {setLocalStatus(e.currentTarget.value)}}
                     autoFocus
                 />
                 : <p

@@ -1,5 +1,4 @@
 import {instance} from "../instances/instances";
-import axios from "axios";
 
 
 export const usersAPI = {
@@ -23,11 +22,24 @@ export const usersAPI = {
     },
 
     getProfile(userId: string | number) {
+        console.warn('Please use profileAPI')
+        return profileAPI.getProfile(userId)
+    },
+}
+
+export const profileAPI = {
+    getProfile(userId: string | number) {
         return instance
             .get(`profile/${userId}`)
     },
-
-
+    getStatus(userId: string | number) {
+        return instance
+            .get(`profile/status/${userId}`)
+    },
+    updateStatus(status: string) {
+        return instance
+            .put(`profile/status`, {status})
+    }
 }
 
 export const authAPI = {

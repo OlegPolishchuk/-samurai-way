@@ -1,8 +1,11 @@
 import {
     AddPostACType,
+    GetUserStatusACType,
     ProfilePageActionsTypeEnum,
-    ProfileType, SetIsFetchingACType,
+    ProfileType,
+    SetIsFetchingACType,
     SetUserProfileACType,
+    SetUserStatusACType,
     UpdateNewPostTextACType
 } from "./types";
 
@@ -45,4 +48,17 @@ export const setIsFetchingAC = (isFetching: boolean): SetIsFetchingACType => {
     }
 }
 
+export const getUserStatusAC = (userStatus: string): GetUserStatusACType => {
+    return {
+        type: ProfilePageActionsTypeEnum.GET_USER_STATUS,
+        payload: {userStatus}
+    }
+}
+
+export const setUserStatusAC = (userStatus: string): SetUserStatusACType => {
+    return {
+        type: ProfilePageActionsTypeEnum.SET_USER_STATUS,
+        payload: {userStatus}
+    }
+}
 

@@ -28,7 +28,8 @@ const initialState = {
     ] as Array<PostType>,
     newPostText: '',
     profile: {} as ProfileType,
-    isFetching: false
+    isFetching: false,
+    userStatus: '',
 }
 
 export type InitialStateType = typeof initialState
@@ -59,6 +60,12 @@ const profileReducer = (state: InitialStateType = initialState, action: ActionsT
             }
 
         case ProfilePageActionsTypeEnum.TOGGLE_IS_FETCHING:
+            return {
+                ...state,
+                ...action.payload
+            }
+
+        case ProfilePageActionsTypeEnum.SET_USER_STATUS:
             return {
                 ...state,
                 ...action.payload
