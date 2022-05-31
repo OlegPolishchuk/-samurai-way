@@ -10,24 +10,18 @@ type DefaultTextAreaPropsType = DetailedHTMLProps<TextareaHTMLAttributes<HTMLTex
 type DefaultButtonPropsType = DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
 
 type TextAreaPropsType = DefaultTextAreaPropsType & MessageFormType & DefaultButtonPropsType & {
-    onChangeText?: (value: string) => void
     onEnter?: () => void
     error?: string
     spanClassName?: string
-    // newPostText: string
-    onClickCallback: () => void
     onSubmitForm?: (values: MessageFormType) => void
 }
 
 const TextArea: React.FC<TextAreaPropsType> = (props) => {
     const {
-        // newPostText,
         onChange,
-        // onChangeText,
         onKeyPress, onEnter,
         error,
         className, spanClassName,
-        onClickCallback,
         onSubmitForm,
         ...restProps
     } = props
@@ -42,25 +36,6 @@ const TextArea: React.FC<TextAreaPropsType> = (props) => {
 
     const totalBtnClassName =  'common_btn'
 
-    const onClickBtnHandler = () => {
-        // const trimmedText = newPostText.trim()
-        //
-        // if (trimmedText === '') {
-        //     setErrorMsg('Error! Need to write something')
-        // }
-        // else {
-        //     onClickCallback()
-        //     setErrorMsg('')
-        // }
-    }
-
-    const onChangeTextareaHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        setErrorMsg('')
-        onChange && onChange(e)
-        //
-        // onChangeText && onChangeText(e.currentTarget.value)
-    }
-
     function validateField(value: string) {
         let error = ''
 
@@ -73,36 +48,11 @@ const TextArea: React.FC<TextAreaPropsType> = (props) => {
 
 
     return (
-        // <div className={s.wrapper}>
-        //     <textarea
-        //         value={newPostText}
-        //         placeholder={'write new post'}
-        //         className={s.textarea}
-        //         onChange={onChangeTextareaHandler}
-        //         // onKeyPress={onKeyPressHandler}
-        //
-        //         {...restProps}
-        //     />
-        //     <div className={s.error_wrapper}>
-        //         <div className={s.error_container}>
-        //             {finalErrorMsg && <span className={finalSpanClassName}>{errorMsg}</span>}
-        //         </div>
-        //         <button
-        //             onClick={ onClickBtnHandler }
-        //             className={totalBtnClassName}
-        //         >
-        //             Add
-        //         </button>
-        //     </div>
-        // </div>
-
-
-
         <Formik
             initialValues={{
                 newPostText: ''
             }}
-            onSubmit={values => onSubmitForm ? onSubmitForm(values) : onClickBtnHandler()}
+            onSubmit={values => onSubmitForm && onSubmitForm(values)}
         >
             {({errors, touched, isValidating}) => (
                 <Form className={s.wrapper}>

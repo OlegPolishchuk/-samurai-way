@@ -5,6 +5,7 @@ import {InitialStateType, sendNewMessageAC, updateNewMessageTextAC} from "../../
 import {withAuthRedirect} from "../../hoc/AuthRedirect";
 import {compose} from "redux";
 import React from "react";
+import {MessageFormType} from "../TextArea/TextArea";
 
 type MapStateToPropsType = {
     dialogsPage: InitialStateType,
@@ -12,8 +13,7 @@ type MapStateToPropsType = {
 }
 
 type MapDispatchToPropsType = {
-    updateMessageText: (text: string) => void
-    addMessage: () => void
+    addMessage: (values: string) => void
 }
 
 export type DialogsPropsType = MapDispatchToPropsType & MapStateToPropsType
@@ -27,11 +27,8 @@ const mapStateToProps = (state: RootStateType): MapStateToPropsType => {
 
 const mapDispatchToProps = (dispatch: AppDispatchType): MapDispatchToPropsType => {
     return {
-        updateMessageText: (text: string) => {
-            dispatch(updateNewMessageTextAC(text))
-        },
-        addMessage: () => {
-            dispatch(sendNewMessageAC())
+        addMessage: (values: string) => {
+            dispatch(sendNewMessageAC(values))
         }
     }
 }

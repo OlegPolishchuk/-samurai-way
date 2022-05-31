@@ -1,10 +1,5 @@
 import {v1} from "uuid";
-import dialogsReducer, {
-    DataType,
-    MessageType,
-    sendNewMessageAC,
-    updateNewMessageTextAC
-} from "../../redux/dialogs-reducer";
+import {DataType, MessageType} from "../../redux/dialogs-reducer";
 
 const initialState = {
     data: [
@@ -42,30 +37,4 @@ const initialState = {
 }
 
 
-test('Case SEND-MESSAGE should add new message(state.newMessageText) to state.messages' +
-    'and clear state.newMessageText', () => {
 
-    const newMessage = 'newMessage'
-    const initialStateCopy = {...initialState, newMessageText: newMessage}
-
-    const endState = dialogsReducer(initialStateCopy, sendNewMessageAC())
-
-    expect(endState.messages[endState.messages.length - 1].message).toBe(newMessage)
-    expect(endState.messages === initialStateCopy.messages).toBe(false)
-
-})
-
-test('Case UPDATE-NEW-MESSAGE-TEXT should update state.newMessageText by onchange input', () => {
-
-    const initialStateCopy = {...initialState}
-    let endState;
-    let letterCounter = ''
-
-    for (let i = 0; i < 10; i++) {
-        letterCounter +=  '*'
-        endState = dialogsReducer(initialStateCopy, updateNewMessageTextAC(`${letterCounter}`))
-    }
-
-    expect(endState?.newMessageText).toBe('**********')
-    expect(endState === initialStateCopy).toBe(false)
-})

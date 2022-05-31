@@ -19,9 +19,10 @@ export type PostType = {
 }
 
 
-export const addPostAC = (): AddPostACType => {
+export const addPostAC = (post: string): AddPostACType => {
     return {
-        type: ProfilePageActionsTypeEnum.ADD_POST
+        type: ProfilePageActionsTypeEnum.ADD_POST,
+        payload: {post}
     }
 }
 

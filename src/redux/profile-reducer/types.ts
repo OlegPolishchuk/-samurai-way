@@ -45,6 +45,7 @@ export type ActionsTypes = AddPostACType
 
 export type AddPostACType = {
     type: ProfilePageActionsTypeEnum.ADD_POST,
+    payload: {post: string}
 }
 
 export type UpdateNewPostTextACType = {

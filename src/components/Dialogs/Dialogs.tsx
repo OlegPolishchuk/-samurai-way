@@ -7,19 +7,12 @@ import {DialogsPropsType} from "./DialogsContainer";
 
 
 const Dialogs = (props: DialogsPropsType) => {
-    const {data, messages, newMessageText} = props.dialogsPage;
-    const {addMessage, updateMessageText} = props
-
-    const onChangeTextHandler = (text: string) => {
-        updateMessageText(text)
-    }
-
-    const addMessageHandler = () => {
-        addMessage()
-    }
+    const {data, messages} = props.dialogsPage;
+    const {addMessage} = props
 
     const submitPost = (values: MessageFormType) => {
         console.log(values)
+        addMessage(values.newPostText)
     }
 
     let dialogList = data.map(el =>  <DialogItem key={el.id} name={el.name} avatar={el.avatar} id={el.id}/>);
@@ -34,10 +27,9 @@ const Dialogs = (props: DialogsPropsType) => {
             </aside>
             <main className={style.messages}>
                 { messageList }
-                <TextArea newPostText={newMessageText}
-                          onChangeText={onChangeTextHandler}
-                          onClickCallback={addMessageHandler}
-                          onSubmitForm={submitPost}
+                <TextArea
+                    newPostText={''}
+                    onSubmitForm={submitPost}
                 />
             </main>
         </div>

@@ -26,7 +26,6 @@ const initialState = {
             likeCount: 0
         }
     ] as Array<PostType>,
-    newPostText: '',
     profile: {} as ProfileType,
     isFetching: false,
     userStatus: '',
@@ -42,16 +41,13 @@ const profileReducer = (state: InitialStateType = initialState, action: ActionsT
             const newPost: PostType = {
                 id: v1(),
                 date: new Date().toISOString(),
-                post: state.newPostText,
+                post: action.payload.post,
                 likeCount: 0,
                 userName: 'Oleg',
                 photo: ''
             }
-            console.log(newPost)
-            return {...state, posts: [newPost, ...state.posts], newPostText: ''}
 
-        case ProfilePageActionsTypeEnum.UPDATE_NEW_POST_TEXT:
-            return {...state, newPostText: action.payload.newText}
+            return {...state, posts: [newPost, ...state.posts]}
 
         case ProfilePageActionsTypeEnum.SET_USER_PROFILE:
             return {

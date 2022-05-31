@@ -1,20 +1,19 @@
 import React from 'react';
 import style from './Posts.module.css';
 import Post from "./Post/Post";
-import TextArea from "../../TextArea/TextArea";
+import TextArea, {MessageFormType} from "../../TextArea/TextArea";
 import {PostsPropsType} from "./Post/PostsContainer";
 
 
 const Posts = (props: PostsPropsType) => {
     const {
         posts,
-        newPostText,
         addPost,
         updateNewPostText,
     } = props
 
-    const addNewPost = () => {
-        addPost()
+    const addNewPost = (values: MessageFormType) => {
+        addPost(values.newPostText)
     }
 
     const onChangeTextHandler = (text: string) => {
@@ -38,9 +37,8 @@ const Posts = (props: PostsPropsType) => {
     return (
         <section className={style.post_wrapper}>
             <TextArea
-                newPostText={newPostText}
-                onChangeText={onChangeTextHandler}
-                onClickCallback={addNewPost}
+                newPostText={''}
+                onSubmitForm={addNewPost}
             />
             { postElements }
         </section>

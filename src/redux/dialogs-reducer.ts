@@ -1,4 +1,5 @@
 import {v1} from "uuid";
+import {MessageFormType} from "../components/TextArea/TextArea";
 
 export type DataType = {
     id: string
@@ -47,7 +48,6 @@ const initialState = {
             message: 'Hello everyone!!!'
         }
     ] as Array<MessageType>,
-    newMessageText: ''
 }
 
 export type InitialStateType = typeof initialState
@@ -63,14 +63,13 @@ const dialogsReducer = (state: InitialStateType = initialState, action: ActionsT
                 id: v1(),
                 name: 'Oleg',
                 avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaNUr6_D1h11lM3KnJ_CgXxwoGF7mU7fIvxA&usqp=CAU\'',
-                message: state.newMessageText
+                message: action.payload.values
             }
-            // Проверка
-            console.log(newMessage)
-            return {...state, messages: [...state.messages, newMessage], newMessageText: ''}
+
+            return {...state, messages: [...state.messages, newMessage]}
 
         case UPDATE_NEW_MESSAGE_TEXT:
-            return {...state, newMessageText: action.payload.newText}
+           return state
 
         default:
             return state
@@ -81,9 +80,10 @@ export default dialogsReducer
 
 // Actions:
 
-export const sendNewMessageAC = () => {
+export const sendNewMessageAC = (values:string ) => {
     return {
-        type: 'SEND-MESSAGE'
+        type: 'SEND-MESSAGE',
+        payload: {values}
     } as const
 }
 

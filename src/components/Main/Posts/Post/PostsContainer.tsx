@@ -8,12 +8,11 @@ import {addPostAC, updateNewPostTextAC} from "../../../../redux/profile-reducer/
 
 type MapStateToPropsType = {
     posts: InitialStateType['posts']
-    newPostText: InitialStateType['newPostText']
 }
 
 type MapToDispatchPropsType = {
     updateNewPostText: (text: string) => void
-    addPost: () => void
+    addPost: (text: string) => void
 }
 
 export type PostsPropsType = MapStateToPropsType & MapToDispatchPropsType
@@ -21,7 +20,6 @@ export type PostsPropsType = MapStateToPropsType & MapToDispatchPropsType
 const mapStateToProps = (state: RootStateType): MapStateToPropsType => {
     return {
         posts: state.profilePage.posts,
-        newPostText: state.profilePage.newPostText
     }
 }
 
@@ -30,8 +28,8 @@ const mapDispatchToProps = (dispatch: AppDispatchType): MapToDispatchPropsType =
         updateNewPostText: (text: string) => {
             dispatch(updateNewPostTextAC(text))
         },
-        addPost: () => {
-            dispatch(addPostAC())
+        addPost: (text: string) => {
+            dispatch(addPostAC(text))
         }
     }
 }
