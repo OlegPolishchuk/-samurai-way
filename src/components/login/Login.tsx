@@ -4,7 +4,7 @@ import LoginForm from "./loginForm/LoginForm";
 
 
 export type FormValuesType = {
-    login: string,
+    email: string,
     password: string,
     rememberMe: boolean
 }

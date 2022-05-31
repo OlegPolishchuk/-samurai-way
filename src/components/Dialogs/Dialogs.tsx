@@ -2,12 +2,11 @@ import React from 'react';
 import style from './Dialogs.module.css';
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
-import TextArea from "../TextArea/TextArea";
+import TextArea, {MessageFormType} from "../TextArea/TextArea";
 import {DialogsPropsType} from "./DialogsContainer";
 
 
 const Dialogs = (props: DialogsPropsType) => {
-    // дестркутуризация пропсов
     const {data, messages, newMessageText} = props.dialogsPage;
     const {addMessage, updateMessageText} = props
 
@@ -17,6 +16,10 @@ const Dialogs = (props: DialogsPropsType) => {
 
     const addMessageHandler = () => {
         addMessage()
+    }
+
+    const submitPost = (values: MessageFormType) => {
+        console.log(values)
     }
 
     let dialogList = data.map(el =>  <DialogItem key={el.id} name={el.name} avatar={el.avatar} id={el.id}/>);
@@ -34,6 +37,7 @@ const Dialogs = (props: DialogsPropsType) => {
                 <TextArea newPostText={newMessageText}
                           onChangeText={onChangeTextHandler}
                           onClickCallback={addMessageHandler}
+                          onSubmitForm={submitPost}
                 />
             </main>
         </div>

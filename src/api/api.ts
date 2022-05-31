@@ -1,5 +1,7 @@
 import {instance} from "../instances/instances";
 
+type userLoginData = {email: string, password: string, rememberMe: boolean}
+
 
 export const usersAPI = {
     getUsers(currentPage: number, pageSize: number){
@@ -42,9 +44,16 @@ export const profileAPI = {
     }
 }
 
+
 export const authAPI = {
+
+
     getMe() {
         return instance
             .get(`auth/me`)
+    },
+    login(userData: userLoginData) {
+        return instance
+            .post(`auth/login`, {...userData})
     }
 }

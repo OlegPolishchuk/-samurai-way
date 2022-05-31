@@ -22,7 +22,7 @@ const LoginForm: React.ComponentType<PropsType> = (props) => {
     return (
         <Formik
             initialValues={{
-                login: '',
+                email: '',
                 password: '',
                 rememberMe: false
             }}
@@ -32,8 +32,8 @@ const LoginForm: React.ComponentType<PropsType> = (props) => {
             {({errors, touched, isValidating}) => (
                 <Form className={s.loginForm}>
                     <label>
-                        <Field name={'login'} placeholder={'login'} validate={validateField}/>
-                        {errors.login && touched.login && <div className={s.error}>{errors.login}</div>}
+                        <Field name={'email'} placeholder={'email'} validate={validateField}/>
+                        {errors.email && touched.email && <div className={s.error}>{errors.email}</div>}
                     </label>
                     <label>
                         <Field name={'password'} placeholder={'password'} validate={validateField}/>
