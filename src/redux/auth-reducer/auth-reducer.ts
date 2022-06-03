@@ -5,7 +5,8 @@ const initialState = {
     email: null as AuthUserDataType['email'],
     login: null as AuthUserDataType["login"],
     isFetching: false,
-    isAuth: false
+    isAuth: false,
+    error: [{field: '', error: ''}]
 }
 
 type InitialStateType = typeof initialState
@@ -19,6 +20,12 @@ const authReducer = (state: InitialStateType = initialState, action: ActionsType
                 ...state,
                 ...action.payload,
               isAuth: true
+            }
+
+        case AuthActionsTypeEnum.SET_LOGIN_ERRORS:
+            return {
+                ...state,
+                ...action.payload
             }
 
         default:

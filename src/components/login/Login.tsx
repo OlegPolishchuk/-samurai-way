@@ -1,6 +1,9 @@
 import {Form, Formik, Field, FormikHelpers} from 'formik';
 import React from 'react';
 import LoginForm from "./loginForm/LoginForm";
+import {useDispatch} from "react-redux";
+import {loginTC} from "../../redux/auth-reducer/thunk-creators";
+import {useAppSelector} from "../../hooks/hooks";
 
 
 export type FormValuesType = {
@@ -10,9 +13,12 @@ export type FormValuesType = {
 }
 
 const Login = () => {
+
+    const dispatch = useDispatch()
+    const error = useAppSelector(state => state.auth.error)
+
     const onSubmit = (values: FormValuesType,) => {
-        console.log(`values => ${JSON.stringify(values)} `)
-        console.dir(values)
+        dispatch(loginTC(values))
     }
 
     return (

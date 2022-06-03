@@ -1,7 +1,7 @@
 import {AppThunk} from "../redux-store";
 import {setIsFetchingAC} from "../users-reducer/action-creators";
-import {authAPI} from "../../api/api";
-import {setAuthUserDataAC} from "./action-creators";
+import {authAPI, userLoginDataType} from "../../api/api";
+import {setAuthUserDataAC, setLoginErrorsAC} from "./action-creators";
 
 export  const getAuthUserDataTC = () => {
     return (dispatch: AppThunk) => {
@@ -16,4 +16,19 @@ export  const getAuthUserDataTC = () => {
                 console.warn(err)
             })
     }
+}
+
+
+export const loginTC = (loginFormUserData: userLoginDataType) => (dispatch: AppThunk) => {
+    authAPI.login(loginFormUserData)
+        .then(res => {
+            console.log(res.data)
+            if(res.data.resultCode === 1) {
+                dispatch(setLoginErrorsAC(res.data.fieldsErrors))
+            } else {
+
+            }
+        })
+        .catch(err => console.warn(err))
+
 }

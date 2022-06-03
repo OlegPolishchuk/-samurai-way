@@ -2,9 +2,11 @@ import React from 'react';
 import {Formik, Field, Form} from "formik";
 import {FormValuesType} from "../Login";
 import s from './LoginForm.module.css'
+import {useAppSelector} from "../../../hooks/hooks";
 
 type PropsType = {
     onSubmit: (values: FormValuesType) => void
+    error? : string
 }
 
 function validateField(value: string) {
@@ -18,6 +20,18 @@ function validateField(value: string) {
 }
 
 const LoginForm: React.ComponentType<PropsType> = (props) => {
+
+    const loginErrors = useAppSelector(state => state.auth.error)
+
+    let emailError: string, passwordError: string;
+
+    loginErrors.forEach(error => {
+        if (error.field === 'email') {
+            emailError = error.error
+        } else {
+            passwordError = error.error
+        }
+    })
 
     return (
         <Formik
@@ -33,10 +47,12 @@ const LoginForm: React.ComponentType<PropsType> = (props) => {
                 <Form className={s.loginForm}>
                     <label>
                         <Field name={'email'} placeholder={'email'} validate={validateField}/>
+                        {emailError && <div className={s.error}>{emailError}</div>}
                         {errors.email && touched.email && <div className={s.error}>{errors.email}</div>}
                     </label>
                     <label>
                         <Field name={'password'} placeholder={'password'} validate={validateField}/>
+                        {passwordError && <div className={s.error}>{passwordError}</div>}
                         {errors.password && touched.password && <div className={s.error}>{errors.password}</div>}
                     </label>
                     <label>

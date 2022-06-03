@@ -1,4 +1,10 @@
-import {AuthActionsTypeEnum, AuthUserDataType, SetAuthUserDataACType} from "./types";
+import {
+    AuthActionsTypeEnum,
+    AuthUserDataType,
+    ErrorFieldType,
+    SetAuthUserDataACType,
+    SetLoginErrorsACType
+} from "./types";
 
 export const setAuthUserDataAC = (data: AuthUserDataType): SetAuthUserDataACType => {
     return {
@@ -6,5 +12,12 @@ export const setAuthUserDataAC = (data: AuthUserDataType): SetAuthUserDataACType
         payload: {
            ...data
         }
+    }
+}
+
+export const setLoginErrorsAC = (error: ErrorFieldType[]): SetLoginErrorsACType => {
+    return {
+        type: AuthActionsTypeEnum.SET_LOGIN_ERRORS,
+        payload: {error}
     }
 }

@@ -1,6 +1,6 @@
 import {instance} from "../instances/instances";
 
-type userLoginData = {email: string, password: string, rememberMe: boolean}
+export type userLoginDataType = {email: string, password: string, rememberMe: boolean}
 
 
 export const usersAPI = {
@@ -52,7 +52,7 @@ export const authAPI = {
         return instance
             .get(`auth/me`)
     },
-    login(userData: userLoginData) {
+    login(userData: userLoginDataType) {
         return instance
             .post(`auth/login`, {...userData})
     }

@@ -1,7 +1,8 @@
 
 
 export enum AuthActionsTypeEnum {
-    SET_AUTH_USER_DATA = 'SET_AUTH_USER_DATA'
+    SET_AUTH_USER_DATA = 'SET_AUTH_USER_DATA',
+    SET_LOGIN_ERRORS = 'SET_LOGIN_ERRORS'
 }
 
 
@@ -16,5 +17,17 @@ export type SetAuthUserDataACType = {
     payload: AuthUserDataType
 }
 
+export type ErrorFieldType = {
+    field: string,
+    error: string
+}
 
-export type ActionsType = SetAuthUserDataACType
+export type SetLoginErrorsACType = {
+    type: AuthActionsTypeEnum.SET_LOGIN_ERRORS,
+    payload: {
+        error: ErrorFieldType[]
+    }
+}
+
+
+export type ActionsType = SetAuthUserDataACType | SetLoginErrorsACType
