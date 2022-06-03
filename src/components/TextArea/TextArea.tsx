@@ -52,7 +52,10 @@ const TextArea: React.FC<TextAreaPropsType> = (props) => {
             initialValues={{
                 newPostText: ''
             }}
-            onSubmit={values => onSubmitForm && onSubmitForm(values)}
+            onSubmit={(values, {resetForm}) => {
+                onSubmitForm && onSubmitForm(values)
+                resetForm({values: {newPostText: ''}})
+            }}
         >
             {({errors, touched, isValidating}) => (
                 <Form className={s.wrapper}>
@@ -66,7 +69,7 @@ const TextArea: React.FC<TextAreaPropsType> = (props) => {
                        />
                        {errors.newPostText && touched.newPostText && <div>{errors.newPostText}</div>}
                    </label>
-                    <button className={totalBtnClassName} type={'submit'}>Send</button>
+                    <button className={totalBtnClassName}>Send</button>
                 </Form>
             )}
         </Formik>

@@ -11,6 +11,7 @@ const Dialogs = (props: DialogsPropsType) => {
     const {addMessage} = props
 
     const submitPost = (values: MessageFormType) => {
+        console.log('subnit')
         console.log(values)
         addMessage(values.newPostText)
     }
