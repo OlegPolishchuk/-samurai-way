@@ -26,9 +26,14 @@ export const loginTC = (loginFormUserData: userLoginDataType) => (dispatch: AppT
             if(res.data.resultCode === 1) {
                 dispatch(setLoginErrorsAC(res.data.fieldsErrors))
             } else {
-
+                dispatch(getAuthUserDataTC())
             }
         })
         .catch(err => console.warn(err))
 
+}
+
+export const logoutTC = () => (dispatch: AppThunk) => {
+    authAPI.logout()
+        .then(res => res)
 }
