@@ -9,7 +9,8 @@ export enum AuthActionsTypeEnum {
 export type AuthUserDataType = {
     login: string | null,
     email: string | null,
-    id: number | null
+    id: number | null,
+    isAuth: boolean,
 }
 
 export type SetAuthUserDataACType = {
