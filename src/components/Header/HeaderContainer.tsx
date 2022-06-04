@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import Header from "./Header";
 import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
-import {getAuthUserDataTC} from "../../redux/auth-reducer/thunk-creators";
+import {getAuthUserDataTC, logoutTC} from "../../redux/auth-reducer/thunk-creators";
 
 const HeaderContainer: React.FC = () => {
     const dispatch = useAppDispatch()
@@ -13,8 +13,12 @@ const HeaderContainer: React.FC = () => {
         dispatch(getAuthUserDataTC())
     }, [])
 
+    const logout = () => {
+        dispatch(logoutTC())
+    }
+
     return (
-        <Header isAuth={isAuth} login={login}/>
+        <Header isAuth={isAuth} login={login} logoutCallback={logout}/>
     );
 };
 

@@ -4,10 +4,11 @@ import style from './Header.module.css';
 
 type PropsType = {
     isAuth: boolean,
-    login: string | null
+    login: string | null,
+    logoutCallback: () => void
 }
 
-const Header: React.FC<PropsType> = ({isAuth, login}) => {
+const Header: React.FC<PropsType> = ({isAuth, login, logoutCallback}) => {
     return (
         <header className={style.main_header}>
             <div className={style.wrapper}>
@@ -15,7 +16,10 @@ const Header: React.FC<PropsType> = ({isAuth, login}) => {
                 <div className={style.loginBlock}>
                     {
                         isAuth
-                            ? <span className={style.loginName}>{login}</span>
+                            ? <>
+                                <span className={style.loginName}>{login}</span>
+                                <span className={style.login} onClick={logoutCallback}>Logout</span>
+                            </>
                             : <NavLink className={style.login} to={'/login'}>Login</NavLink>
                     }
 

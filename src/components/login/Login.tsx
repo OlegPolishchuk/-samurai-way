@@ -4,6 +4,7 @@ import LoginForm from "./loginForm/LoginForm";
 import {useDispatch} from "react-redux";
 import {loginTC, logoutTC} from "../../redux/auth-reducer/thunk-creators";
 import {useAppSelector} from "../../hooks/hooks";
+import {Redirect} from "react-router-dom";
 
 
 export type FormValuesType = {
@@ -18,6 +19,10 @@ const Login = () => {
     const isAuth = useAppSelector(state => state.auth.isAuth)
     const error = useAppSelector(state => state.auth.error)
 
+    if (isAuth) {
+        return <Redirect to={'/profile'}/>
+    }
+
     const onSubmit = (values: FormValuesType,) => {
         dispatch(loginTC(values))
     }
@@ -25,14 +30,11 @@ const Login = () => {
     const logoutHandler = () => {
         dispatch(logoutTC())
     }
-    console.log(isAuth)
+
     return (
         <div>
             <h1>Login</h1>
-            {isAuth
-            ? <button onClick={logoutHandler}>Logout</button>
-            : <LoginForm onSubmit={onSubmit}/>
-            }
+            <LoginForm onSubmit={onSubmit}/>
         </div>
     );
 };
