@@ -19,7 +19,6 @@ const authReducer = (state: InitialStateType = initialState, action: ActionsType
             return {
                 ...state,
                 ...action.payload,
-              isAuth: true
             }
 
         case AuthActionsTypeEnum.SET_LOGIN_ERRORS:
