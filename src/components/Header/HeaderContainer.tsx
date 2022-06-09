@@ -9,10 +9,6 @@ const HeaderContainer: React.FC = () => {
     const isAuth = useAppSelector(state => state.auth.isAuth)
     const login = useAppSelector(state => state.auth.login)
 
-    useEffect(() => {
-        dispatch(getAuthUserDataTC())
-    }, [])
-
     const logout = () => {
         dispatch(logoutTC())
     }
