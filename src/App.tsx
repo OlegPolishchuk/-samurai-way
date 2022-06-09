@@ -6,14 +6,22 @@ import {BrowserRouter} from "react-router-dom";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import {useAppDispatch, useAppSelector} from "./hooks/hooks";
 import {getAuthUserDataTC, logoutTC} from "./redux/auth-reducer/thunk-creators";
+import Preloader from "./components/Preloader/Preloader";
+import {initializeAppThunk} from "./redux/app-reducer/thunk-creators";
 
 const App: React.FC = (props) => {
 
   const dispatch = useAppDispatch()
 
+  const isInitialized = useAppSelector(state => state.app.initialized)
+
   useEffect(() => {
-    dispatch(getAuthUserDataTC())
+    dispatch(initializeAppThunk())
   }, [])
+
+  if (!isInitialized) {
+    return <Preloader/>
+  }
 
     return (
         <BrowserRouter>
